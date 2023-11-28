@@ -1,18 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Sofia+Sans+Semi+Condensed:wght@200;300;400;500;600;700;800;900;1000&display=swap");
 *,
 *::before,
 *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  line-height: 1.4;
 }
 html {
   font-size: 62.5%;
 }
+body {
+  font-family: "Sofia Sans Semi Condensed", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
 
 html {
-    --color-primary: rgb(212, 61, 61);
-    --color-secondary: yellow;
-    --color-accent: green;
-    --color-background: rgb(199, 199, 255);
-    --color-text: black;
+  --color-primary: rgb(212, 61, 61);
+  --color-secondary: yellow;
+  --color-accent: green;
+  --color-background: rgb(199, 199, 255);
+  --color-text: black;
+}
+
+a {
+  text-decoration: none;
+  display: inline-block;
+}
+ul {
+  list-style-type: none;
 }
