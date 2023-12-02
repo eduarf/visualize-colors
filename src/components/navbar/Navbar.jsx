@@ -9,6 +9,7 @@ const StyledNavbar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid gray;
 `;
 const StyledLogo = styled.p`
   font-size: 2rem;
