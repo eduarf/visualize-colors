@@ -1,11 +1,12 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 const HeroImgStyled = styled.div`
-  flex-basis: 40%;
+  height: 450px;
+  width: 500px;
   display: grid;
   grid-template-columns: repeat(9, minmax(0, 1fr));
   grid-template-rows: repeat(10, minmax(0, 1fr));
-  gap: .5rem;
+  gap: 0.5rem;
   div {
     border-radius: 1rem;
   }
@@ -21,7 +22,7 @@ const HeroImgStyled = styled.div`
     background-color: var(--color-background);
     height: 85%;
   }
-  div:nth-child(3){
+  div:nth-child(3) {
     grid-row: 1 / 1;
     grid-column: 7 / 9;
     background-color: var(--color-secondary);
@@ -52,7 +53,7 @@ const HeroImgStyled = styled.div`
   }
   div:nth-child(8) {
     grid-row: 2 / 5;
-    grid-column: 7 / 9  ;
+    grid-column: 7 / 9;
     background-color: var(--color-secondary);
   }
   div:nth-child(9) {
@@ -113,24 +114,24 @@ const HeroImgStyled = styled.div`
 export default function HeroImg() {
   return (
     <HeroImgStyled>
-        <div></div> {/* 1 */}
-        <div></div> {/* 2 */}
-        <div></div> {/* 3 */}
-        <div></div> {/* 4 */}
-        <div></div> {/* 5 */}
-        <div></div> {/* 6 */}
-        <div></div> {/* 7 */}
-        <div></div> {/* 8 */}
-        <div></div> {/* 9 */}
-        <div></div> {/* 10 */}
-        <div></div> {/* 11 */}
-        <div></div> {/* 12 */}
-        <div></div> {/* 13 */}
-        <div></div> {/* 14 */}
-        <div></div> {/* 15 */}
-        <div></div> {/* 16 */}
-        <div></div> {/* 17 */}
-        <div></div> {/* 18 */}
+      <div></div> {/* 1 */}
+      <div></div> {/* 2 */}
+      <div></div> {/* 3 */}
+      <div></div> {/* 4 */}
+      <div></div> {/* 5 */}
+      <div></div> {/* 6 */}
+      <div></div> {/* 7 */}
+      <div></div> {/* 8 */}
+      <div></div> {/* 9 */}
+      <div></div> {/* 10 */}
+      <div></div> {/* 11 */}
+      <div></div> {/* 12 */}
+      <div></div> {/* 13 */}
+      <div></div> {/* 14 */}
+      <div></div> {/* 15 */}
+      <div></div> {/* 16 */}
+      <div></div> {/* 17 */}
+      <div></div> {/* 18 */}
     </HeroImgStyled>
-  )
+  );
 }

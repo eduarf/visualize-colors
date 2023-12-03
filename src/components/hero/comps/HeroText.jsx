@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import PrimaryButton from "../../buttons/PrimaryButton";
 import SecondaryButton from "../../buttons/SecondaryButton";
+import { ChangeTheme } from "../../../features/ThemeSlice";
+import { useDispatch } from "react-redux";
 
 const StyledHeroText = styled.div`
   flex-basis: 60%;
@@ -49,6 +51,7 @@ const StyledButtonContainer = styled.div`
 `;
 
 export default function HeroText() {
+  const dispatch = useDispatch();
   return (
     <StyledHeroText>
       <StyledHeader>
@@ -64,6 +67,7 @@ export default function HeroText() {
         <SecondaryButton name="How does it work?" />
         <PrimaryButton name="Get Started" />
       </StyledButtonContainer>
+      <button onClick={() => dispatch(ChangeTheme())}>Deneme</button>
     </StyledHeroText>
   );
 }
