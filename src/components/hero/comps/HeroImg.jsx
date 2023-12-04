@@ -13,7 +13,7 @@ const HeroImgStyled = styled.div`
   div:first-child {
     grid-row: 1 / 1;
     grid-column: 1 / 3;
-    background-color: lightgray;
+    background-color: var(--color-lightgray);
     height: 85%;
   }
   div:nth-child(2) {
@@ -37,7 +37,7 @@ const HeroImgStyled = styled.div`
   div:nth-child(5) {
     grid-row: 4 / 9;
     grid-column: 1 / 1;
-    background-color: lightgray;
+    background-color: var(--color-lightgray);
     width: 85%;
   }
   div:nth-child(6) {
@@ -69,17 +69,17 @@ const HeroImgStyled = styled.div`
   div:nth-child(11) {
     grid-row: 6 / 8;
     grid-column: 5 / 7;
-    background-color: lightgray;
+    background-color: var(--color-lightgray);
   }
   div:nth-child(12) {
     grid-row: 8 / 10;
     grid-column: 5 / 7;
-    background-color: lightgray;
+    background-color: var(--color-lightgray);
   }
   div:nth-child(13) {
     grid-row: 6 / 8;
     grid-column: 7 / 9;
-    background-color: var(--color-secondary);
+    background-color: var(--color-primaryComp);
   }
   div:nth-child(14) {
     grid-row: 8 / 11;
@@ -100,13 +100,13 @@ const HeroImgStyled = styled.div`
   div:nth-child(17) {
     grid-row: 1 / 8;
     grid-column: 9 / 10;
-    background-color: lightgray;
+    background-color: var(--color-lightgray);
     width: 40%;
   }
   div:nth-child(18) {
     grid-row: 8 / -1;
     grid-column: 9 / 10;
-    background-color: lightgray;
+    background-color: var(--color-lightgray);
     width: 40%;
   }
 `;

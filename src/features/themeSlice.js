@@ -2,7 +2,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  appTheme: false,
+  primaryColor: "rgb(255, 132, 0)",
+  secondaryColor: "rgb(255, 245, 214)",
+  accentColor: "rgb(207, 67, 7)",
+  backgroundColor: "rgb(255, 250, 235)",
+  textColor: "rgb(19, 14, 1)",
+  primaryComplement: "rgb(255,226,188)",
 };
 
 const themeSlice = createSlice({
@@ -10,9 +15,9 @@ const themeSlice = createSlice({
   initialState,
   reducers: {
     ChangeTheme: (state, action) => {
-      let red = Math.floor(Math.random() * 256);
-      let green = Math.floor(Math.random() * 256);
-      let blue = Math.floor(Math.random() * 256);
+      const red = Math.floor(Math.random() * 256);
+      const green = Math.floor(Math.random() * 256);
+      const blue = Math.floor(Math.random() * 256);
 
       // Text Color
       function koyuRenk(rgb) {
@@ -32,11 +37,19 @@ const themeSlice = createSlice({
         return adjustedRGB;
       }
 
+      //   function komplementerRenk(rgb) {
+      //     let hsl = rgbToHsl(rgb);
+      //     let tonTamamlayici = (hsl[0] + 180) % 360;
+      //     let tamamlayiciRenk = hslToRgb([tonTamamlayici, hsl[1], hsl[2]]);
+      //     return [rgb, tamamlayiciRenk];
+      //   }
       function komplementerRenk(rgb) {
         let hsl = rgbToHsl(rgb);
-        let tonTamamlayici = (hsl[0] + 180) % 360;
-        let tamamlayiciRenk = hslToRgb([tonTamamlayici, hsl[1], hsl[2]]);
-        return [rgb, tamamlayiciRenk];
+      
+        // Primary renkten daha açık bir ton, ancak aynı ton
+        let tonTamamlayiciAciRenk = hslToRgb([hsl[0], hsl[1], Math.min(100, hsl[2] + 20)]);
+      
+        return [rgb, tonTamamlayiciAciRenk];
       }
 
       // RGB renklerini HSL renk modeline dönüştürme
@@ -133,15 +146,23 @@ const themeSlice = createSlice({
         };
       }
 
-      let baslangicRenk = [red, green, blue];
-      let colorPalette = renkPaletiOlustur(baslangicRenk);
-      let baslangicBackground = colorPalette.primary;
-      let backgroundColor = acikRenk(baslangicBackground);
-      let baslangicTextColor = colorPalette.primary;
-      let koyuRenkDegeri = koyuRenk(baslangicTextColor);
+      const baslangicRenk = [red, green, blue];
+      const colorPalette = renkPaletiOlustur(baslangicRenk);
       console.log(colorPalette);
-      console.log(backgroundColor);
-      console.log(koyuRenkDegeri);
+      const primary = colorPalette.primary;
+      const secondary = colorPalette.secondary;
+      const primaryComplement = colorPalette.primaryComplement;
+      const accent = colorPalette.accent;
+      const baslangicBackground = primary;
+      const backgroundColor = acikRenk(baslangicBackground);
+      const baslangicTextColor = primary;
+      const textColor = koyuRenk(baslangicTextColor);
+      state.primaryColor = `rgb(${primary[0]}, ${primary[2]}, ${primary[2]})`;
+      state.secondaryColor = `rgb(${secondary[0]}, ${secondary[1]}, ${secondary[2]})`;
+      state.accentColor = `rgb(${accent[0]}, ${accent[1]}, ${accent[2]})`;
+      state.backgroundColor = `rgb(${backgroundColor[0]}, ${backgroundColor[1]}, ${backgroundColor[2]})`;
+      state.textColor = `rgb(${textColor[0]}, ${textColor[1]}, ${textColor[2]})`;
+      state.primaryComplement = `rgb(${primaryComplement[0]}, ${primaryComplement[1]}, ${primaryComplement[2]})`;
     },
   },
 });

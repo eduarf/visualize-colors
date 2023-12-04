@@ -16,13 +16,7 @@ body {
   font-weight: 500;
 }
 
-html {
-  --color-primary: rgb(212, 61, 61);
-  --color-secondary: yellow;
-  --color-accent: green;
-  --color-background: rgb(199, 199, 255);
-  --color-text: black;
-}
+
 
 a {
   text-decoration: none;
