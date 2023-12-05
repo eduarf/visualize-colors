@@ -14,7 +14,7 @@ const themeSlice = createSlice({
   name: "theme",
   initialState,
   reducers: {
-    ChangeTheme: (state, action) => {
+    changeTheme: (state, action) => {
       const red = Math.floor(Math.random() * 256);
       const green = Math.floor(Math.random() * 256);
       const blue = Math.floor(Math.random() * 256);
@@ -31,7 +31,7 @@ const themeSlice = createSlice({
       // backgroundColor
       function acikRenk(rgb) {
         let adjustedRGB = rgb.map(function (component) {
-          return Math.round(component + (255 - component) * 0.9);
+          return Math.round(component + (255 - component) * 0.95);
         });
 
         return adjustedRGB;
@@ -164,9 +164,12 @@ const themeSlice = createSlice({
       state.textColor = `rgb(${textColor[0]}, ${textColor[1]}, ${textColor[2]})`;
       state.primaryComplement = `rgb(${primaryComplement[0]}, ${primaryComplement[1]}, ${primaryComplement[2]})`;
     },
+    turnToDarkMode: (state, action) => {
+
+    },
   },
 });
 
-export const { ChangeTheme } = themeSlice.actions;
+export const { changeTheme } = themeSlice.actions;
 
 export default themeSlice.reducer;
