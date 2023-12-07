@@ -175,7 +175,7 @@ const themeSlice = createSlice({
     },
     changePrimary: (state, action) => {
       console.log(action.payload);
-        state.primaryColor = action.payload;
+        state.textColor = action.payload;
     }
   },
 });
