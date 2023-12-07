@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
@@ -17,7 +18,6 @@ export default function ToolBar() {
   const [color, setColor] = useState("");
   const dispatch = useDispatch();
   const primaryColor = useSelector((state) => state.theme.primaryColor);
-  console.log(primaryColor);
   
 
   const handleSetColor = (e) => {

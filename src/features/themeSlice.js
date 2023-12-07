@@ -145,7 +145,7 @@ const themeSlice = createSlice({
           accent: accentRenk,
         };
       }
-
+      
       function rgbToHex(rgb) {
         function componentToHex(c) {
           const hex = c.toString(16);
@@ -156,7 +156,6 @@ const themeSlice = createSlice({
 
       const baslangicRenk = [red, green, blue];
       const colorPalette = renkPaletiOlustur(baslangicRenk);
-      console.log(colorPalette);
       const primary = colorPalette.primary;
       const secondary = colorPalette.secondary;
       const primaryComplement = colorPalette.primaryComplement;
@@ -165,14 +164,14 @@ const themeSlice = createSlice({
       const backgroundColor = acikRenk(baslangicBackground);
       const baslangicTextColor = primary;
       const textColor = koyuRenk(baslangicTextColor);
-      state.primaryColor = rgbToHex(`rgb(${primary[0]}, ${primary[2]}, ${primary[2]})`);
-      state.secondaryColor = rgbToHex(`rgb(${secondary[0]}, ${secondary[1]}, ${secondary[2]})`);
-      state.accentColor = rgbToHex(`rgb(${accent[0]}, ${accent[1]}, ${accent[2]})`);
-      state.backgroundColor = rgbToHex(`rgb(${backgroundColor[0]}, ${backgroundColor[1]}, ${backgroundColor[2]})`);
-      state.textColor = rgbToHex(`rgb(${textColor[0]}, ${textColor[1]}, ${textColor[2]})`);
-      state.primaryComplement = rgbToHex(`rgb(${primaryComplement[0]}, ${primaryComplement[1]}, ${primaryComplement[2]})`);
-    },
-    turnToDarkMode: (state, action) => {
+      console.log(primary);
+      state.primaryColor = rgbToHex(primary);
+      state.secondaryColor = rgbToHex(secondary);
+      state.accentColor = rgbToHex(accent);
+      state.backgroundColor = rgbToHex(backgroundColor);
+      state.textColor = rgbToHex(textColor);
+      state.primaryComplement = rgbToHex(primaryComplement);
+
     },
     changePrimary: (state, action) => {
       console.log(action.payload);
@@ -181,6 +180,6 @@ const themeSlice = createSlice({
   },
 });
 
-export const { changeTheme, turnToDarkMode, changePrimary } = themeSlice.actions;
+export const { changeTheme, changePrimary } = themeSlice.actions;
 
 export default themeSlice.reducer;
