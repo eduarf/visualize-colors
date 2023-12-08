@@ -173,13 +173,24 @@ const themeSlice = createSlice({
       state.primaryComplement = rgbToHex(primaryComplement);
 
     },
-    changePrimary: (state, action) => {
-      console.log(action.payload);
+    changeText: (state, action) => {
         state.textColor = action.payload;
-    }
+    },
+    changeBackground: (state, action) => {
+      state.backgroundColor = action.payload;
+    },
+    changePrimary: (state, action) => {
+      state.primaryColor = action.payload;
+    },
+    changeSecondary: (state, action) => {
+      state.secondaryColor = action.payload;
+    },
+    changeAccent: (state, action) => {
+      state.accentColor = action.payload;
+    },
   },
 });
 
-export const { changeTheme, changePrimary } = themeSlice.actions;
+export const { changeTheme,changeText ,changePrimary, changeBackground, changeSecondary, changeAccent } = themeSlice.actions;
 
 export default themeSlice.reducer;

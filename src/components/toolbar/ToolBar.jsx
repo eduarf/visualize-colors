@@ -1,65 +1,33 @@
-/* eslint-disable no-unused-vars */
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { changePrimary } from "../../features/ThemeSlice";
+import Text from "./components/Text";
+import Background from "./components/Background";
+import Primary from "./components/Primary";
+import Secondary from "./components/Secondary";
+import Accent from "./components/Accent";
 
 const StyledToolBar = styled.div`
   position: fixed;
-  height: 8rem;
-  width: 90%;
+  height: 6.5rem;
+  width: 80%;
   background-color: var(--color-lightgray);
+  background-color: #f0eee6;
   left: 50%;
+  bottom: 2rem;
   transform: translateX(-50%);
-  border-radius: 1rem;
+  border-radius: 0.5rem;
+  display: flex;
 `;
 
-const StyledLabel = styled.label`
-  cursor: pointer;
-  text-align: center;
-  padding: 1.3em 1.8em;
-  margin: 0;
-  position: absolute;
-  z-index: 10;
-  color: #fff;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-`;
-const StyledColorInput = styled.input.attrs({
-  type: "color",
-})`
-  appearance: none;
-  height: 100%;
-  width: 100%;
-`;
-
-const StyledContainer = styled.div`
-  position: relative;
-  height: 95%;
-  width: 8%;
-`;
 
 export default function ToolBar() {
-  const [color, setColor] = useState("");
-  const dispatch = useDispatch();
-  const textColor = useSelector((state) => state.theme.textColor);
-
-  const handleSetColor = (e) => {
-    setColor(e.target.value);
-    dispatch(changePrimary(e.target.value));
-  };
 
   return (
     <StyledToolBar>
-      <StyledContainer>
-        <StyledLabel htmlFor="text">Deneme</StyledLabel>
-        <StyledColorInput
-          value={textColor}
-          id="text"
-          onChange={(e) => handleSetColor(e)}
-        />
-      </StyledContainer>
+      <Text />
+      <Background />
+      <Primary />
+      <Secondary />
+      <Accent />
     </StyledToolBar>
   );
 }
