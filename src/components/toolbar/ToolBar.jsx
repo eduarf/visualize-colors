@@ -4,6 +4,9 @@ import Background from "./components/Background";
 import Primary from "./components/Primary";
 import Secondary from "./components/Secondary";
 import Accent from "./components/Accent";
+import { BsDice5Fill } from "react-icons/bs";
+import { changeTheme } from "../../features/ThemeSlice";
+import { useDispatch } from "react-redux";
 
 const StyledToolBar = styled.div`
   position: fixed;
@@ -18,9 +21,14 @@ const StyledToolBar = styled.div`
   display: flex;
 `;
 
+const StyledDice = styled(BsDice5Fill)`
+  font-size: 5.8rem;
+  cursor: pointer;
+`;
+
 
 export default function ToolBar() {
-
+  const dispatch = useDispatch();
   return (
     <StyledToolBar>
       <Text />
@@ -28,6 +36,7 @@ export default function ToolBar() {
       <Primary />
       <Secondary />
       <Accent />
+      <StyledDice onClick={() => dispatch(changeTheme())} />
     </StyledToolBar>
   );
 }
