@@ -14,6 +14,7 @@ const StyledHeader = styled.h1`
   font-weight: 900;
   letter-spacing: 2px;
   line-height: 1.1;
+  color: var(--color-text);
   span.color-effect {
     letter-spacing: 0;
     background-image: linear-gradient(
@@ -28,10 +29,10 @@ const StyledHeader = styled.h1`
   span.font-effect {
     letter-spacing: 0;
     font-style: italic;
-    color: black;
+    color: var(--color-text);
     -webkit-text-fill-color: transparent;
     -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-color: var(--color-text);
     margin-left: 1rem;
   }
 `;
@@ -41,6 +42,7 @@ const StyledPara = styled.p`
   width: 55%;
   font-weight: 400;
   line-height: 2;
+  color: var(--color-text);
 `;
 
 const StyledButtonContainer = styled.div`

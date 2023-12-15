@@ -5,7 +5,8 @@ import Primary from "./components/Primary";
 import Secondary from "./components/Secondary";
 import Accent from "./components/Accent";
 import { BsDice5Fill } from "react-icons/bs";
-import { changeTheme } from "../../features/ThemeSlice";
+import { MdDarkMode } from "react-icons/md";
+import { changeTheme, darkTheme } from "../../features/ThemeSlice";
 import { useDispatch } from "react-redux";
 
 const StyledToolBar = styled.div`
@@ -26,6 +27,11 @@ const StyledDice = styled(BsDice5Fill)`
   cursor: pointer;
 `;
 
+const StyledDarkMode = styled(MdDarkMode)`
+  font-size: 5.8rem;
+  cursor: pointer;
+`;
+
 
 export default function ToolBar() {
   const dispatch = useDispatch();
@@ -37,6 +43,7 @@ export default function ToolBar() {
       <Secondary />
       <Accent />
       <StyledDice onClick={() => dispatch(changeTheme())} />
+      <StyledDarkMode onClick={() => dispatch(darkTheme())} />
     </StyledToolBar>
   );
 }

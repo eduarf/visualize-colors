@@ -15,6 +15,7 @@ const StyledLogo = styled.p`
   font-size: 2rem;
   font-weight: 700;
   letter-spacing: -0.5px;
+  color: var(--color-text);
 `;
 
 const StyledMenu = styled.div`
@@ -23,6 +24,7 @@ const StyledMenu = styled.div`
   display: flex;
   align-items: center;
   gap: 5rem;
+  color: var(--color-text);
 `;
 
 const StyledMenuItem = styled.a`
