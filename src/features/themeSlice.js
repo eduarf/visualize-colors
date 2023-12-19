@@ -9,7 +9,8 @@ import {
   lightColor,
   darkColor,
   lightenColor,
-  darkenColor
+  darkenColor,
+  createColorPalette
 } from "../components/utils/helpers";
 
 const initialState = {
@@ -33,55 +34,17 @@ const themeSlice = createSlice({
       const red = Math.floor(Math.random() * 256);
       const green = Math.floor(Math.random() * 256);
       const blue = Math.floor(Math.random() * 256);
-      function komplementerRenk(rgb) {
-        let hsl = rgbToHsl(rgb);
 
-        // Primary renkten daha açık bir ton, ancak aynı ton
-        let tonTamamlayiciAciRenk = hslToRgb([
-          hsl[0],
-          hsl[1],
-          Math.min(100, hsl[2] + 20),
-        ]);
-
-        return [rgb, tonTamamlayiciAciRenk];
-      }
-
-      function renkPaletiOlustur(rgb) {
-        let primaryRenk = rgb;
-        let primaryComplementRenk = komplementerRenk(primaryRenk)[1]; // Komplementer renk
-
-        // İkincil (Secondary) renk
-        let secondaryRenk = hslToRgb([
-          (rgbToHsl(primaryRenk)[0] + 180) % 360,
-          50,
-          70,
-        ]);
-
-        // Aksent (Accent) renk
-        let accentRenk = hslToRgb([
-          (rgbToHsl(primaryRenk)[0] + 60) % 360,
-          80,
-          60,
-        ]);
-
-        return {
-          primary: primaryRenk,
-          primaryComplement: primaryComplementRenk,
-          secondary: secondaryRenk,
-          accent: accentRenk,
-        };
-      }
-
-      const baslangicRenk = [red, green, blue];
-      const colorPalette = renkPaletiOlustur(baslangicRenk);
+      const beginningColor = [red, green, blue];
+      const colorPalette = createColorPalette(beginningColor);
       const primary = colorPalette.primary;
       const secondary = colorPalette.secondary;
       const primaryComplement = colorPalette.primaryComplement;
       const accent = colorPalette.accent;
-      const baslangicBackground = primary;
-      const backgroundColor = lightColor(baslangicBackground);
-      const baslangicTextColor = primary;
-      const textColor = darkColor(baslangicTextColor);
+      const beginningBackground = primary;
+      const backgroundColor = lightColor(beginningBackground);
+      const beginningTextColor = primary;
+      const textColor = darkColor(beginningTextColor);
       state.primaryColor = rgbToHex(primary);
       state.secondaryColor = rgbToHex(secondary);
       state.accentColor = rgbToHex(accent);

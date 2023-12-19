@@ -122,4 +122,42 @@ export function darkenColor(rgb, factor = .8) {
   return rgb.map(component => Math.round(component * factor));
 }
 
+function complementerColor(rgb) {
+  let hsl = rgbToHsl(rgb);
+
+  // Primary renkten daha açık bir ton, ancak aynı ton
+  let tonTamamlayiciAciRenk = hslToRgb([
+    hsl[0],
+    hsl[1],
+    Math.min(100, hsl[2] + 20),
+  ]);
+
+  return [rgb, tonTamamlayiciAciRenk];
+}
+
+export function createColorPalette(rgb) {
+  let primaryColor = rgb;
+  let primaryComplementColor = complementerColor(primaryColor)[1]; 
+
+  // Secondary
+  let secondaryColor = hslToRgb([
+    (rgbToHsl(primaryColor)[0] + 180) % 360,
+    50,
+    70,
+  ]);
+
+  // accent
+  let accentColor = hslToRgb([
+    (rgbToHsl(primaryColor)[0] + 60) % 360,
+    80,
+    60,
+  ]);
+
+  return {
+    primary: primaryColor,
+    primaryComplement: primaryComplementColor,
+    secondary: secondaryColor,
+    accent: accentColor,
+  };
+}
 
