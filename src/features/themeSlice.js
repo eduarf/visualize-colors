@@ -38,19 +38,12 @@ const themeSlice = createSlice({
       const beginningColor = [red, green, blue];
       const colorPalette = createColorPalette(beginningColor);
       const primary = colorPalette.primary;
-      const secondary = colorPalette.secondary;
-      const primaryComplement = colorPalette.primaryComplement;
-      const accent = colorPalette.accent;
-      const beginningBackground = primary;
-      const backgroundColor = lightColor(beginningBackground);
-      const beginningTextColor = primary;
-      const textColor = darkColor(beginningTextColor);
       state.primaryColor = rgbToHex(primary);
-      state.secondaryColor = rgbToHex(secondary);
-      state.accentColor = rgbToHex(accent);
-      state.backgroundColor = rgbToHex(backgroundColor);
-      state.textColor = rgbToHex(textColor);
-      state.primaryComplement = rgbToHex(primaryComplement);
+      state.secondaryColor = rgbToHex(colorPalette.secondary);
+      state.accentColor = rgbToHex(colorPalette.accent);
+      state.backgroundColor = rgbToHex(lightColor(primary));
+      state.textColor = rgbToHex(darkColor(primary));
+      state.primaryComplement = rgbToHex(colorPalette.primaryComplement);
       localStorage.setItem('lightPalette', JSON.stringify(state));
       if(state.isDark) {
         state.isDark = true;
