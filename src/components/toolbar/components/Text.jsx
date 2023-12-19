@@ -9,7 +9,7 @@ const StyledLabel = styled.label`
   margin: 0;
   position: absolute;
   z-index: 10;
-  color: #fff;
+  color: ${(props) => (props.$isDark ? "#000" : '#fff')};
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -34,13 +34,16 @@ const StyledContainer = styled.div`
 export default function Text() {
   const dispatch = useDispatch();
   const textColor = useSelector((state) => state.theme.textColor);
+  const isDark = useSelector((state) => state.theme.isDark);
 
   const handleSetColor = (e) => {
     dispatch(changeText(e.target.value));
   };
   return (
     <StyledContainer>
-      <StyledLabel htmlFor="text">Text</StyledLabel>
+      <StyledLabel htmlFor="text" $isDark={isDark}>
+        Text
+      </StyledLabel>
       <StyledColorInput
         value={textColor}
         id="text"

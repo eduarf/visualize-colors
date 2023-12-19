@@ -19,12 +19,16 @@ const initialState = {
   backgroundColor: "#FFFAEB",
   textColor: "#130E01",
   primaryComplement: "#FFE2BC",
+  isDark: false,
 };
 
 const themeSlice = createSlice({
   name: "theme",
   initialState,
   reducers: {
+    defaultThemeLocalStorage: (state, action) => {
+      localStorage.setItem('lightPalette', JSON.stringify(state));
+    },
     changeTheme: (state, action) => {
       const red = Math.floor(Math.random() * 256);
       const green = Math.floor(Math.random() * 256);
@@ -91,6 +95,7 @@ const themeSlice = createSlice({
       state.backgroundColor = rgbToHex(backgroundColor);
       state.textColor = rgbToHex(textColor);
       state.primaryComplement = rgbToHex(primaryComplement);
+      localStorage.setItem('lightPalette', JSON.stringify(state));
     },
     changeText: (state, action) => {
       state.textColor = action.payload;
@@ -108,11 +113,27 @@ const themeSlice = createSlice({
       state.accentColor = action.payload;
     },
     darkTheme: (state, action) => {
+      state.isDark = true;
       state.primaryColor = rgbToHex(lightenColor(hexToRgb(state.primaryColor, 1.4)));
       state.secondaryColor = rgbToHex(darkenColor(hexToRgb(state.secondaryColor, 1.7)));
       state.accentColor = rgbToHex(darkenColor(hexToRgb(state.accentColor)));
       state.backgroundColor = rgbToHex(darkColor(hexToRgb(state.backgroundColor)));
       state.textColor = rgbToHex(lightColor(hexToRgb(state.textColor)));
+      localStorage.setItem('darkTheme', JSON.stringify(state));
+    },
+    returnToLight: (state, action) => {
+      state.isDark = false;
+      const storedPalette = localStorage.getItem('lightPalette');
+    
+      if (storedPalette) {
+        const previousPalette = JSON.parse(storedPalette);
+        state.primaryColor = previousPalette.primaryColor;
+        state.secondaryColor = previousPalette.secondaryColor;
+        state.accentColor = previousPalette.accentColor;
+        state.backgroundColor = previousPalette.backgroundColor;
+        state.textColor = previousPalette.textColor;
+        state.primaryComplement = previousPalette.primaryComplement;
+      }
     },
   },
 });
@@ -125,6 +146,8 @@ export const {
   changeSecondary,
   changeAccent,
   darkTheme,
+  returnToLight,
+  defaultThemeLocalStorage
 } = themeSlice.actions;
 
 export default themeSlice.reducer;

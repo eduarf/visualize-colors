@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import Home from "./pages/Home/Home";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { defaultThemeLocalStorage } from "./features/ThemeSlice";
 
 const StyledAppContainer = styled.div`
   --color-primary: ${(props) => props.$primary};
@@ -13,6 +15,7 @@ const StyledAppContainer = styled.div`
 `;
 
 function App() {
+  const dispatch = useDispatch();
   const primaryColor = useSelector((state) => state.theme.primaryColor);
   const secondaryColor = useSelector((state) => state.theme.secondaryColor);
   const accentColor = useSelector((state) => state.theme.accentColor);
@@ -21,6 +24,10 @@ function App() {
   const primaryComplement = useSelector(
     (state) => state.theme.primaryComplement
   );
+
+  useEffect(() => {
+    dispatch(defaultThemeLocalStorage());
+  }, []);
 
   return (
     <StyledAppContainer
