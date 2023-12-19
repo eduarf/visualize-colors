@@ -7,6 +7,9 @@ const StyledHeroText = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 3rem;
+  @media only screen and (max-width: 768px){
+    gap: 2rem;
+  }
 `;
 const StyledHeader = styled.h1`
   font-size: 7rem;
@@ -14,6 +17,15 @@ const StyledHeader = styled.h1`
   letter-spacing: 2px;
   line-height: 1.1;
   color: var(--color-text);
+  @media only screen and (max-width: 1000px){
+    font-size: 6rem;
+  }
+  @media only screen and (max-width: 768px){
+    font-size: 5rem;
+  }
+  @media only screen and (max-width: 500px){
+    font-size: 4rem;
+  }
   span.color-effect {
     letter-spacing: 0;
     background-image: linear-gradient(
@@ -42,11 +54,18 @@ const StyledPara = styled.p`
   font-weight: 400;
   line-height: 2;
   color: var(--color-text);
+  @media only screen and (max-width: 500px){
+    font-size: 1.6rem;
+  }
 `;
 
 const StyledButtonContainer = styled.div`
     display: flex;
     gap: 2rem;
+    @media only screen and (max-width: 1000px){
+      flex-direction: column-reverse;
+      width: 100%;
+    }
 `;
 
 export default function HeroText() {

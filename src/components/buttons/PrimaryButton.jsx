@@ -7,7 +7,7 @@ const StyledPrimaryButton = styled.a`
   color: var(--color-background);
   border-radius: 1rem;
   transition: transform ease 0.2s, box-shadow ease 0.2s;
-  display: inline-block;
+  display: block;
   font-size: 1.8rem;
   z-index: 2;
   white-space: nowrap;
