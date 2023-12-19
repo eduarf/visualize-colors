@@ -3,7 +3,6 @@ import PrimaryButton from "../../buttons/PrimaryButton";
 import SecondaryButton from "../../buttons/SecondaryButton";
 
 const StyledHeroText = styled.div`
-  flex-basis: 60%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

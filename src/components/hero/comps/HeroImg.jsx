@@ -1,12 +1,34 @@
 import styled from "styled-components";
 
 const HeroImgStyled = styled.div`
+  @media only screen and (max-width: 1000px) {
+    grid-row-start: 1;
+    grid-row-end: 2;
+    display: grid;
+    place-items: center;
+  }
+`;
+
+const StyledContainer = styled.div`
   height: 450px;
   width: 500px;
   display: grid;
   grid-template-columns: repeat(9, minmax(0, 1fr));
   grid-template-rows: repeat(10, minmax(0, 1fr));
   gap: 0.5rem;
+  @media only screen and (max-width: 1000px){
+    height: 600px;
+    width: 100%;
+  }
+  @media only screen and (max-width: 768px) {
+    height: 480px;
+  }
+  @media only screen and (max-width: 500px){
+    height: 400px;
+  }
+  @media only screen and (max-width: 400px){
+    height: 320px;
+  }
   div {
     border-radius: 1rem;
   }
@@ -114,24 +136,26 @@ const HeroImgStyled = styled.div`
 export default function HeroImg() {
   return (
     <HeroImgStyled>
-      <div></div> {/* 1 */}
-      <div></div> {/* 2 */}
-      <div></div> {/* 3 */}
-      <div></div> {/* 4 */}
-      <div></div> {/* 5 */}
-      <div></div> {/* 6 */}
-      <div></div> {/* 7 */}
-      <div></div> {/* 8 */}
-      <div></div> {/* 9 */}
-      <div></div> {/* 10 */}
-      <div></div> {/* 11 */}
-      <div></div> {/* 12 */}
-      <div></div> {/* 13 */}
-      <div></div> {/* 14 */}
-      <div></div> {/* 15 */}
-      <div></div> {/* 16 */}
-      <div></div> {/* 17 */}
-      <div></div> {/* 18 */}
+      <StyledContainer>
+        <div></div> {/* 1 */}
+        <div></div> {/* 2 */}
+        <div></div> {/* 3 */}
+        <div></div> {/* 4 */}
+        <div></div> {/* 5 */}
+        <div></div> {/* 6 */}
+        <div></div> {/* 7 */}
+        <div></div> {/* 8 */}
+        <div></div> {/* 9 */}
+        <div></div> {/* 10 */}
+        <div></div> {/* 11 */}
+        <div></div> {/* 12 */}
+        <div></div> {/* 13 */}
+        <div></div> {/* 14 */}
+        <div></div> {/* 15 */}
+        <div></div> {/* 16 */}
+        <div></div> {/* 17 */}
+        <div></div> {/* 18 */}
+      </StyledContainer>
     </HeroImgStyled>
   );
 }
