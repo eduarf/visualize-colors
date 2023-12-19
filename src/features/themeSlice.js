@@ -21,6 +21,7 @@ const initialState = {
   textColor: "#130E01",
   primaryComplement: "#FFE2BC",
   isDark: false,
+  isExportOpen: false,
 };
 
 const themeSlice = createSlice({
@@ -94,6 +95,12 @@ const themeSlice = createSlice({
         state.primaryComplement = previousPalette.primaryComplement;
       }
     },
+    onExport: (state, action) => {
+      state.isExportOpen = true;
+    },
+    offExport: (state, action) => {
+      state.isExportOpen = false;
+    },
   },
 });
 
@@ -106,7 +113,9 @@ export const {
   changeAccent,
   darkTheme,
   returnToLight,
-  defaultThemeLocalStorage
+  defaultThemeLocalStorage,
+  onExport,
+  offExport
 } = themeSlice.actions;
 
 export default themeSlice.reducer;
