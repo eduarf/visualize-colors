@@ -33,13 +33,6 @@ const themeSlice = createSlice({
       const red = Math.floor(Math.random() * 256);
       const green = Math.floor(Math.random() * 256);
       const blue = Math.floor(Math.random() * 256);
-
-      //   function komplementerRenk(rgb) {
-      //     let hsl = rgbToHsl(rgb);
-      //     let tonTamamlayici = (hsl[0] + 180) % 360;
-      //     let tamamlayiciRenk = hslToRgb([tonTamamlayici, hsl[1], hsl[2]]);
-      //     return [rgb, tamamlayiciRenk];
-      //   }
       function komplementerRenk(rgb) {
         let hsl = rgbToHsl(rgb);
 
@@ -96,6 +89,16 @@ const themeSlice = createSlice({
       state.textColor = rgbToHex(textColor);
       state.primaryComplement = rgbToHex(primaryComplement);
       localStorage.setItem('lightPalette', JSON.stringify(state));
+      if(state.isDark) {
+        state.isDark = true;
+        state.primaryColor = rgbToHex(lightenColor(hexToRgb(state.primaryColor, 1.4)));
+        state.secondaryColor = rgbToHex(darkenColor(hexToRgb(state.secondaryColor, 1.7)));
+        state.accentColor = rgbToHex(darkenColor(hexToRgb(state.accentColor)));
+        state.backgroundColor = rgbToHex(darkColor(hexToRgb(state.backgroundColor)));
+        state.textColor = rgbToHex(lightColor(hexToRgb(state.textColor)));
+        localStorage.setItem('darkTheme', JSON.stringify(state));
+      }
+      else return;
     },
     changeText: (state, action) => {
       state.textColor = action.payload;
