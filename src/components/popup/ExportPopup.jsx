@@ -27,13 +27,27 @@ const StyledTabItem = styled.li`
 
 const StyledTabHeader = styled.div`
   font-size: 1.8rem;
-  border-bottom: 3px solid black;
+  /* border-bottom: ${(props) => props.$isSelected ? '3px solid black' : null}; */
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    background-color: #000;
+    left: 0;
+    bottom: -2px;
+    height: 3px;
+    width: ${(props) => props.$isSelected ? '100%' : '0%'};
+    border-radius: 5px;
+    transition: all .3s ease-in-out;
+    transform-origin: left;
+  }
 `;
 
 export default function ExportPopup() {
   const ref = useRef(null);
   const dispatch = useDispatch();
   const popupContent = useSelector((state) => state.popup.popupContent);
+  console.log(popupContent);
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutside, true);
@@ -57,6 +71,7 @@ export default function ExportPopup() {
             <StyledTabItem key={item.id}>
               <StyledTabHeader
                 onClick={() => dispatch(popupController(item.comp))}
+                $isSelected={item.comp === popupContent || popupContent === null && item.name === 'CSS'}
               >
                 {item.name}
               </StyledTabHeader>
