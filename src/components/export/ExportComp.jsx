@@ -2,7 +2,7 @@ import styled from "styled-components";
 import ExportPopup from "../popup/ExportPopup";
 
 const StyledExport = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
