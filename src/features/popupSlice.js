@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   popupContent: null,
+  popupSub: null,
 };
 
 const popupSlice = createSlice({
@@ -12,9 +13,12 @@ const popupSlice = createSlice({
     popupController: (state, action) => {
       state.popupContent = action.payload;
     },
+    popupSubController: (state, action) => {
+      state.popupSub = action.payload;
+    },
   },
 });
 
-export const { popupController } = popupSlice.actions;
+export const { popupController, popupSubController } = popupSlice.actions;
 
 export default popupSlice.reducer;
