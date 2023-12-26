@@ -4,7 +4,17 @@ import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { popupMenuItems } from "../../../data";
 import { popupController } from "../../features/popupSlice";
-import CssContent from "./components/CssContent";
+import * as Components from "./components";
+const {
+  CssContent,
+  TailwindContent,
+  CustomCodeContent,
+  DownloadContent,
+  GradientsContent,
+  QrContent,
+  ScssContent,
+  ShadesContent,
+} = Components;
 
 const StyledExportCard = styled.div`
   height: 450px;
@@ -27,7 +37,8 @@ const StyledTabItem = styled.li`
 
 const StyledTabHeader = styled.div`
   font-size: 1.8rem;
-  /* border-bottom: ${(props) => props.$isSelected ? '3px solid black' : null}; */
+  /* border-bottom: ${(props) =>
+    props.$isSelected ? "3px solid black" : null}; */
   position: relative;
   &::before {
     content: "";
@@ -36,9 +47,9 @@ const StyledTabHeader = styled.div`
     left: 0;
     bottom: -2px;
     height: 3px;
-    width: ${(props) => props.$isSelected ? '100%' : '0%'};
+    width: ${(props) => (props.$isSelected ? "100%" : "0%")};
     border-radius: 5px;
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
     transform-origin: left;
   }
 `;
@@ -47,7 +58,6 @@ export default function ExportPopup() {
   const ref = useRef(null);
   const dispatch = useDispatch();
   const popupContent = useSelector((state) => state.popup.popupContent);
-  console.log(popupContent);
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutside, true);
@@ -70,8 +80,11 @@ export default function ExportPopup() {
           return (
             <StyledTabItem key={item.id}>
               <StyledTabHeader
-                onClick={() => dispatch(popupController(item.comp))}
-                $isSelected={item.comp === popupContent || popupContent === null && item.name === 'CSS'}
+                onClick={() => dispatch(popupController(item.compKey))}
+                $isSelected={
+                  item.compKey === popupContent ||
+                  (popupContent === null && item.name === "CSS")
+                }
               >
                 {item.name}
               </StyledTabHeader>
@@ -79,7 +92,15 @@ export default function ExportPopup() {
           );
         })}
       </StyledTabList>
-      {popupContent || <CssContent />}
+      {popupContent === null ? <CssContent /> : null}
+      {popupContent === "CssContent" ? <CssContent /> : null}
+      {popupContent === "TailwindContent" ? <TailwindContent /> : null}
+      {popupContent === "CustomCodeContent" ? <CustomCodeContent /> : null}
+      {popupContent === "DownloadContent" ? <DownloadContent /> : null}
+      {popupContent === "GradientsContent" ? <GradientsContent /> : null}
+      {popupContent === "QrContent" ? <QrContent /> : null}
+      {popupContent === "ScssContent" ? <ScssContent /> : null}
+      {popupContent === "ShadesContent" ? <ShadesContent /> : null}
     </StyledExportCard>
   );
 }
