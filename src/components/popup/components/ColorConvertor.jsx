@@ -16,6 +16,17 @@ const StyledCode = styled.pre`
   white-space: pre-wrap;
 `;
 
+const StyledCodeFileName = styled.small`
+  display: inline-block;
+  padding: .8rem 2.2rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: .8px;
+  color: #979696;
+  width: 100%;
+  border-bottom: 1px solid #d4d4d4;
+`;
+
 export default function ColorConvertor() {
   const popupSub = useSelector((state) => state.popup.popupSub);
   const popupContent = useSelector((state) => state.popup.popupContent);
@@ -102,6 +113,7 @@ const themeColorsHslScss = `
   return (
     <StyledColorConvertor>
       <StyledCodeBlock>
+      {popupContent === 'TailwindContent' ? <StyledCodeFileName>tailwind.config.js</StyledCodeFileName> : null}
         <StyledCode>
           {/* CSS Content */}
         {popupContent === 'CssContent' || popupContent === null ? (
