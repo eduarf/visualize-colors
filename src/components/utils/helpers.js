@@ -1,3 +1,6 @@
+
+
+
 // RGB renklerini HSL renk modeline dönüştürme
 export function rgbToHsl(rgb) {
   let r = rgb[0] / 255;
@@ -160,4 +163,9 @@ export function createColorPalette(rgb) {
     accent: accentColor,
   };
 }
+
+
+
+
+
 

@@ -28,6 +28,8 @@ const StyledExportCard = styled.div`
 const StyledTabList = styled.ul`
   display: flex;
   justify-content: space-between;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid black;
 `;
 
 const StyledTabItem = styled.li`
@@ -45,7 +47,7 @@ const StyledTabHeader = styled.div`
     position: absolute;
     background-color: #000;
     left: 0;
-    bottom: -2px;
+    bottom: -1rem;
     height: 3px;
     width: ${(props) => (props.$isSelected ? "100%" : "0%")};
     border-radius: 5px;

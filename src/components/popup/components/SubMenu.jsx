@@ -5,7 +5,7 @@ import { popupSubController } from "../../../features/popupSlice";
 
 const StyledSubMenu = styled.div`
   display: flex;
-  gap: 3rem;
+  gap: 1.2rem;
 `;
 
 const StyledSubMenuItem = styled.div`

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import SubMenu from "./SubMenu";
+import ColorConvertor from "./ColorConvertor";
 
 const StyledCSsContent = styled.div`
   min-height: 100%;
@@ -7,7 +8,10 @@ const StyledCSsContent = styled.div`
 `;
 
 export default function CssContent() {
-  return <StyledCSsContent>
-    <SubMenu />
-  </StyledCSsContent>;
+  return (
+    <StyledCSsContent>
+      <SubMenu />
+      <ColorConvertor />
+    </StyledCSsContent>
+  );
 }
