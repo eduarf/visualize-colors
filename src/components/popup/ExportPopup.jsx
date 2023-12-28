@@ -62,19 +62,22 @@ export default function ExportPopup() {
   const popupContent = useSelector((state) => state.popup.popupContent);
 
   useEffect(() => {
-    document.addEventListener("click", handleClickOutside, true);
+    const handleClickOutside = (e) => {
+      const isToolBarClick = e.target.closest("#toolbar");
+      const isPopupContentClick = e.target.closest("#popupContent");
+
+      if (!isToolBarClick && !isPopupContentClick && ref.current && !ref.current.contains(e.target)) {
+        dispatch(offExport());
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
 
     return () => {
-      document.removeEventListener("click", handleClickOutside, true);
+      document.removeEventListener("click", handleClickOutside);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch, ref]);
 
-  const handleClickOutside = (e) => {
-    if (ref.current && !ref.current.contains(e.target)) {
-      dispatch(offExport());
-    }
-  };
   return (
     <StyledExportCard ref={ref}>
       <StyledTabList>

@@ -23,7 +23,7 @@ const StyledToolBar = styled.div`
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
-  z-index: 998;
+  z-index: 999999;
 `;
 
 const StyledDice = styled(BsDice5Fill)`
@@ -59,14 +59,14 @@ export default function ToolBar() {
   const isDark = useSelector((state) => state.theme.isDark);
   const dispatch = useDispatch();
   return (
-    <StyledToolBar>
+    <StyledToolBar id='toolbar'>
       <Text />
       <Background />
       <Primary />
       <Secondary />
       <Accent />
       <StyledDice onClick={() => dispatch(changeTheme())} />
-      { isDark ? <StyledLightMode onClick={() => dispatch(returnToLight())} /> : <StyledDarkMode onClick={() => dispatch(darkTheme())} /> }
+      { isDark ? <StyledLightMode id="toolbar" onClick={() => dispatch(returnToLight())} /> : <StyledDarkMode id='toolbar' onClick={() => dispatch(darkTheme())} /> }
       <StyledExportIcon onClick={() => dispatch(onExport())} />
     </StyledToolBar>
   );
