@@ -14,6 +14,9 @@ const StyledCodeBlock = styled.div`
 
 const StyledCode = styled.pre`
   white-space: pre-wrap;
+  font-size: 1.6rem;
+  font-weight: 500;
+  padding-bottom: ${props => props.$popupContent ? '2rem' : '0'};
 `;
 
 const StyledCodeFileName = styled.small`
@@ -114,7 +117,7 @@ const themeColorsHslScss = `
     <StyledColorConvertor>
       <StyledCodeBlock>
       {popupContent === 'TailwindContent' ? <StyledCodeFileName>tailwind.config.js</StyledCodeFileName> : null}
-        <StyledCode>
+        <StyledCode $popupContent={popupContent === 'ScssContent'}>
           {/* CSS Content */}
         {popupContent === 'CssContent' || popupContent === null ? (
           popupSub === null || popupSub === "HEX" ? themeColorsHex :
