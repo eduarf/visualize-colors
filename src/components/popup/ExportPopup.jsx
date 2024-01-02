@@ -17,12 +17,14 @@ const {
 } = Components;
 
 const StyledExportCard = styled.div`
-  height: 450px;
   width: 80rem;
   max-width: 90%;
   background-color: #fff;
   border-radius: 1rem;
-  padding: 3rem 2rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between !important;
 `;
 
 const StyledTabList = styled.ul`
@@ -54,6 +56,28 @@ const StyledTabHeader = styled.div`
     transition: all 0.3s ease-in-out;
     transform-origin: left;
   }
+`;
+const StyledExportInformation = styled.small`
+display: flex;
+gap: .5rem;
+margin-left: 2rem;
+a {
+  color: gray;
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    height: .5px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    background-color: #acacac;
+    transition: all .2s ease-in-out;
+  }
+  &:hover::before {
+    height: 2px;
+  }
+}
 `;
 
 export default function ExportPopup() {
@@ -106,6 +130,11 @@ export default function ExportPopup() {
       {popupContent === "QrContent" ? <QrContent /> : null}
       {popupContent === "ScssContent" ? <ScssContent /> : null}
       {popupContent === "ShadesContent" ? <ShadesContent /> : null}
+      <StyledExportInformation>
+        <a href="#">Learn about exporting</a>
+        -
+        <a href="#"> Request an export option</a>
+      </StyledExportInformation>
     </StyledExportCard>
   );
 }

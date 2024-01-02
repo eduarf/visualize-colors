@@ -10,6 +10,7 @@ const StyledExport = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
+  align-items: flex-start;
   padding-top: 10rem;
   z-index: 10009;
 `;
