@@ -1,6 +1,8 @@
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import convert from "color-convert";
+import { useRef } from "react";
+import { toast } from 'react-toastify';
 
 const StyledColorConvertor = styled.div`
   margin-top: 3rem;
@@ -10,6 +12,7 @@ const StyledCodeBlock = styled.div`
   width: 100%;
   background-color: #f2f2f2;
   border-radius: 1rem;
+  position: relative;
 `;
 
 const StyledCode = styled.pre`
@@ -30,7 +33,24 @@ const StyledCodeFileName = styled.small`
   border-bottom: 1px solid #d4d4d4;
 `;
 
+  const StyledCopyButton = styled.button`
+    position: absolute;
+    border: 1px solid gray;  
+    background-color: white;
+    color: #4f4f4f;
+    padding: 0.2rem 1rem;
+    top: -1rem;
+    right: 2rem;
+    border-radius: 5px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    &:hover {
+      background-color: #f2f2f2;
+    }
+  `;
+
 export default function ColorConvertor() {
+  const copyRef = useRef(null);
   const popupSub = useSelector((state) => state.popup.popupSub);
   const popupContent = useSelector((state) => state.popup.popupContent);
   const primaryColor = useSelector((state) => state.theme.primaryColor);
@@ -38,6 +58,17 @@ export default function ColorConvertor() {
   const accentColor = useSelector((state) => state.theme.accentColor);
   const backgroundColor = useSelector((state) => state.theme.backgroundColor);
   const textColor = useSelector((state) => state.theme.textColor);
+
+  const copyToClipboard = async () => {
+    try {
+      if (copyRef.current) {
+        await navigator.clipboard.writeText(copyRef.current.textContent);
+        toast.success('Copied');
+      }
+    } catch (error) {
+      toast.error('Error. Try again');
+    }
+  };
 
 
   // CSs
@@ -116,27 +147,29 @@ const themeColorsHslScss = `
   return (
     <StyledColorConvertor>
       <StyledCodeBlock>
+      <StyledCopyButton onClick={copyToClipboard}>Copy</StyledCopyButton>
       {popupContent === 'TailwindContent' ? <StyledCodeFileName>tailwind.config.js</StyledCodeFileName> : null}
         <StyledCode $popupContent={popupContent === 'ScssContent'}>
           {/* CSS Content */}
-        {popupContent === 'CssContent' || popupContent === null ? (
-          popupSub === null || popupSub === "HEX" ? themeColorsHex :
-          popupSub === "RGB" ? themeColorRgb :
-          popupSub === "HSL" ? themeColorHsl :
-          null ) : null }
-          {/* Tailwind Content */}
-          {popupContent === 'TailwindContent' ? (
-          popupSub === null || popupSub === "HEX" ? themeColorsHexTailwind :
-          popupSub === "RGB" ? themeColorsRgbTailwind :
-          popupSub === "HSL" ? themeColorsHslTailwind :
-          null ) : null }
-          {/* Css Content */}
-          {popupContent === 'ScssContent' ? (
-          popupSub === null || popupSub === "HEX" ? themeColorsHexScss :
-          popupSub === "RGB" ? themeColorsRgbScss :
-          popupSub === "HSL" ? themeColorsHslScss :
-          null ) : null }
-
+          <div ref={copyRef}>
+            {popupContent === 'CssContent' || popupContent === null ? (
+            popupSub === null || popupSub === "HEX" ? themeColorsHex :
+            popupSub === "RGB" ? themeColorRgb :
+            popupSub === "HSL" ? themeColorHsl :
+            null ) : null }
+            {/* Tailwind Content */}
+            {popupContent === 'TailwindContent' ? (
+            popupSub === null || popupSub === "HEX" ? themeColorsHexTailwind :
+            popupSub === "RGB" ? themeColorsRgbTailwind :
+            popupSub === "HSL" ? themeColorsHslTailwind :
+            null ) : null }
+            {/* Css Content */}
+            {popupContent === 'ScssContent' ? (
+            popupSub === null || popupSub === "HEX" ? themeColorsHexScss :
+            popupSub === "RGB" ? themeColorsRgbScss :
+            popupSub === "HSL" ? themeColorsHslScss :
+            null ) : null }
+          </div>
         </StyledCode>
       </StyledCodeBlock>
     </StyledColorConvertor>
