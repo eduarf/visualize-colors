@@ -49,6 +49,28 @@ const StyledCodeFileName = styled.small`
     }
   `;
 
+  const StyledExportInformation = styled.small`
+    display: flex;
+    gap: .5rem;
+    a {
+      color: gray;
+      position: relative;
+      &::before {
+        content: '';
+        position: absolute;
+        height: .5px;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        background-color: #acacac;
+        transition: all .2s ease-in-out;
+      }
+      &:hover::before {
+        height: 2px;
+      }
+    }
+  `;
+
 export default function ColorConvertor() {
   const copyRef = useRef(null);
   const popupSub = useSelector((state) => state.popup.popupSub);
@@ -172,6 +194,11 @@ const themeColorsHslScss = `
           </div>
         </StyledCode>
       </StyledCodeBlock>
+      <StyledExportInformation>
+        <a href="#">Learn about exporting</a>
+        -
+        <a href="#"> Request an export option</a>
+      </StyledExportInformation>
     </StyledColorConvertor>
   );
 }
