@@ -25,8 +25,6 @@ const StyledShades = styled.div`
 `;
 
 
-
-
 export default function ShadesContent() {
   const primaryComplement = useSelector((state) => state.theme.primaryComplement);
   // const backgroundColor = useSelector((state) => state.theme.backgroundColor);

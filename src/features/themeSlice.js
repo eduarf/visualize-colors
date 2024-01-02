@@ -14,12 +14,12 @@ import {
 } from "../components/utils/helpers";
 
 const initialState = {
-  primaryColor: "#FF8400",
-  secondaryColor: "#FFF5D6",
-  accentColor: "#CF4307",
-  backgroundColor: "#FFFAEB",
-  textColor: "#130E01",
-  primaryComplement: "#FFE2BC",
+  primaryColor: "#42B6C8",
+  secondaryColor: "#9C95E0",
+  accentColor: "#9762D1",
+  backgroundColor: "#F9FDFD",
+  textColor: "#081B1C",
+  primaryComplement: "#d4eef2",
   isDark: false,
   isExportOpen: false,
 };
