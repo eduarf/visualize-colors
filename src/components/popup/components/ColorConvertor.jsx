@@ -146,12 +146,38 @@ const themeColorsHslScss = `
    $secondary: hsl(${convert.hex.hsl(secondaryColor)})
    $accent: hsl(${convert.hex.hsl(accentColor)})
 `;
+
+// Gradients
+const themeColorsGradients = `
+  --linearPrimarySecondary: linear-gradient(${primaryColor}, ${secondaryColor});
+  --linearPrimaryAccent: linear-gradient(${primaryColor}, ${accentColor});
+  --linearSecondaryAccent: linear-gradient(${secondaryColor}, ${accentColor});
+  --radialPrimarySecondary: radial-gradient(${primaryColor}, ${secondaryColor});
+  --radialPrimaryAccent: radial-gradient(${primaryColor}, ${accentColor});
+  --radialSecondaryAccent: radial-gradient(${secondaryColor}, ${accentColor});
+`;
+const themeColorsGradientsRgb = `
+  --linearPrimarySecondary: linear-gradient(rgb(${convert.hex.rgb(primaryColor)}), rgb(${convert.hex.rgb(secondaryColor)}));
+  --linearPrimaryAccent: linear-gradient(rgb(${convert.hex.rgb(primaryColor)}), rgb(${convert.hex.rgb(accentColor)}));
+  --linearSecondaryAccent: linear-gradient(rgb(${secondaryColor}), rgb(${convert.hex.rgb(accentColor)}));
+  --radialPrimarySecondary: radial-gradient(rgb(${convert.hex.rgb(primaryColor)}), rgb(${convert.hex.rgb(secondaryColor)}));
+  --radialPrimaryAccent: radial-gradient(rgb(${convert.hex.rgb(primaryColor)}), rgb(${convert.hex.rgb(accentColor)}));
+  --radialSecondaryAccent: radial-gradient(rgb(${secondaryColor}), rgb(${convert.hex.rgb(accentColor)}));
+`;
+const themeColorsGradientsHsl = `
+  --linearPrimarySecondary: linear-gradient(hsl(${convert.hex.hsl(primaryColor)}), hsl(${convert.hex.hsl(secondaryColor)}));
+  --linearPrimaryAccent: linear-gradient(hsl(${convert.hex.hsl(primaryColor)}), hsl(${convert.hex.hsl(accentColor)}));
+  --linearSecondaryAccent: linear-gradient(hsl(${secondaryColor}), hsl(${convert.hex.hsl(accentColor)}));
+  --radialPrimarySecondary: radial-gradient(hsl(${convert.hex.hsl(primaryColor)}), hsl(${convert.hex.hsl(secondaryColor)}));
+  --radialPrimaryAccent: radial-gradient(hsl(${convert.hex.hsl(primaryColor)}), hsl(${convert.hex.hsl(accentColor)}));
+  --radialSecondaryAccent: radial-gradient(hsl(${convert.hex.hsl(secondaryColor)}), hsl(${convert.hex.hsl(accentColor)}));
+`;
   return (
     <StyledColorConvertor>
       <StyledCodeBlock>
       <StyledCopyButton onClick={copyToClipboard}>Copy</StyledCopyButton>
       {popupContent === 'TailwindContent' ? <StyledCodeFileName>tailwind.config.js</StyledCodeFileName> : null}
-        <StyledCode $popupContent={popupContent === 'ScssContent'}>
+        <StyledCode $popupContent={popupContent === 'ScssContent' || popupContent === 'GradientsContent'}>
           {/* CSS Content */}
           <div ref={copyRef}>
             {popupContent === 'CssContent' || popupContent === null ? (
@@ -170,6 +196,12 @@ const themeColorsHslScss = `
             popupSub === null || popupSub === "HEX" ? themeColorsHexScss :
             popupSub === "RGB" ? themeColorsRgbScss :
             popupSub === "HSL" ? themeColorsHslScss :
+            null ) : null }
+            {/* Gradients Content */}
+            {popupContent === 'GradientsContent' ? (
+            popupSub === null || popupSub === "HEX" ? themeColorsGradients :
+            popupSub === "RGB" ? themeColorsGradientsRgb :
+            popupSub === "HSL" ? themeColorsGradientsHsl :
             null ) : null }
           </div>
         </StyledCode>
