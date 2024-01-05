@@ -68,9 +68,31 @@ const StyledButtonContainer = styled.div`
     }
 `;
 
+const StyledLatesText = styled.a`
+    padding: 0.1rem 0.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--color-primary);
+    width: fit-content;
+    border-radius: 3px;
+    background: var(--color-secondary);
+    color: var(--color-background);
+    transition: opacity ease 0.3s;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: all .3s ease;
+    &:hover {
+      background-color: var(--color-primary);
+    }
+    @media only screen and (max-width: 500px){
+      font-size: 1.1rem;
+      margin-bottom: .5rem;
+    }
+`;
+
 export default function HeroText() {
   return (
     <StyledHeroText>
+      <StyledLatesText>🎄☃️❄️ Happy December and v3.6 release →</StyledLatesText>
       <StyledHeader>
         Visualize Your <br /> <span className="color-effect">Colors</span> &
         <span className="font-effect">Fonts</span>

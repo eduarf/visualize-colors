@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 
 const StyledHome = styled.div`
 position: relative;
+background-color: var(--color-background);
 `;
 
 
