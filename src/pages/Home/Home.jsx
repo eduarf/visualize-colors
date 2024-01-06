@@ -4,6 +4,7 @@ import Hero from "../../components/hero/Hero";
 import ToolBar from "../../components/toolbar/ToolBar";
 import ExportComp from "../../components/export/ExportComp";
 import { useSelector } from "react-redux";
+import WhyColorSelector from "../../components/why/WhyColorSelector";
 
 const StyledHome = styled.div`
 position: relative;
@@ -18,6 +19,7 @@ const Home = () => {
     <Hero />
     <ToolBar />
     {isExportOpen ?  <ExportComp /> : null} 
+    <WhyColorSelector />
   </StyledHome>;
 };
 
