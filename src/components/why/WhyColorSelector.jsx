@@ -7,6 +7,15 @@ import { nanoid } from "nanoid";
 const StyledWhyColorSelector = styled.div`
       padding: 10vh 8vw;
       margin-bottom: 50rem;
+      @media only screen and (max-width: 1000px){
+        padding: 8vh 15vw;
+      }
+      @media only screen and (max-width: 768px){
+        padding: 4vh 12vw;
+      }
+      @media only screen and (max-width: 400px){
+        padding: 4vh 6vw;
+      }
 `;
 const StyledHeading = styled.h2`
     font-size: 6rem;
@@ -14,11 +23,18 @@ const StyledHeading = styled.h2`
     letter-spacing: -.5px;
     text-align: center;
     margin-bottom: 4rem;
+    @media only screen and (max-width: 768px){
+      font-size: 4rem;
+    }
 `;
 
 const StyledCardContainer = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 3rem;
+  @media only screen and (max-width: 1000px){
+    grid-template-columns: repeat(1, minmax(0 ,1fr));
+  }
 `;
 const StyledHeader = styled.h4`
   font-size: 2.8rem;
@@ -47,6 +63,10 @@ const StyledCard = styled.div`
   background-color: var(--color-secondary);
   border-radius: 1.5rem;
   position: relative; 
+  @media only screen and (max-width: 1000px){
+    padding: 2rem;
+    gap: 1rem;
+  }
 
   &:hover {
     ${StyledHeader} {
@@ -64,6 +84,13 @@ const StyledPara = styled.p`
   font-size: 1.8rem;
   line-height: 1.8;
   letter-spacing: .9px;
+  @media only screen and (max-width: 1000px){
+    text-align: center;
+  }
+  @media only screen and (max-width: 500px){
+    font-size: 1.6rem;
+    line-height: 1.6;
+  }
 `;
 
 export default function WhyColorSelector() {
