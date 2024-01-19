@@ -5,6 +5,7 @@ import ToolBar from "../../components/toolbar/ToolBar";
 import ExportComp from "../../components/export/ExportComp";
 import { useSelector } from "react-redux";
 import WhyColorSelector from "../../components/why/WhyColorSelector";
+import BentoComp from "../../components/bento/BentoComp";
 
 const StyledHome = styled.div`
 position: relative;
@@ -20,6 +21,7 @@ const Home = () => {
     <ToolBar />
     {isExportOpen ?  <ExportComp /> : null} 
     <WhyColorSelector />
+    <BentoComp />
   </StyledHome>;
 };
 

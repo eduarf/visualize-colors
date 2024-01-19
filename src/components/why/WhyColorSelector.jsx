@@ -6,7 +6,6 @@ import { nanoid } from "nanoid";
 
 const StyledWhyColorSelector = styled.div`
       padding: 6vh 8vw;
-      margin-bottom: 50rem;
       @media only screen and (max-width: 1000px){
         padding: 8vh 15vw;
       }
