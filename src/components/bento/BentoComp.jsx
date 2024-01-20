@@ -13,17 +13,41 @@ const StyledBentoComp = styled.div`
 
 const StyledUsersCard = styled.div`
   padding: 8rem 1.6rem;
-  background-color: orange;
+  background-color: var(--color-primary);
   grid-column: 1 / 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  border-radius: 2rem;
   h2 {
+    font-size: 6rem;
+    font-weight: 800;
+    letter-spacing: -1px;
   }
   span {
+    font-size: 1.8rem;
   }
 `;
 const StyledFreeCard = styled.div`
   padding: 8rem 1.6rem;
-  background-color: #e1e1e1;
+  background-color: var(--color-secondary);
   grid-column: 5 / 6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2rem;
+  gap: 2rem;
+  h2 {
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+  span {
+    font-size: 1.8rem;
+  }
 `;
 
 const StyledProductHuntCard = styled.div`
@@ -47,7 +71,7 @@ export default function BentoComp() {
       </StyledUsersCard>
       <StyledFreeCard>
         <h2>
-          100%<br></br>Free
+          100%<br></br>Free!
         </h2>
         <span>Forever.</span>
       </StyledFreeCard>
