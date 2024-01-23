@@ -25,9 +25,11 @@ const StyledUsersCard = styled.div`
     font-size: 6rem;
     font-weight: 800;
     letter-spacing: -1px;
+    color: var(--color-background);
   }
   span {
     font-size: 1.8rem;
+    color: var(--color-background);
   }
 `;
 const StyledFreeCard = styled.div`
@@ -53,13 +55,71 @@ const StyledFreeCard = styled.div`
 const StyledProductHuntCard = styled.div`
   grid-column: 4 / 6;
   padding: 8rem 1.6rem;
-  background-color: red;
+  background-color: var(--color-accent);
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  h2 {
+    font-size: 3.8rem;
+    letter-spacing: -.5px;
+    font-weight: 600;
+    color: var(--color-background);
+  }
+  a {
+    color: var(--color-background);
+    font-size: 1.8rem;
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -0.5rem;
+      left: 0;
+      height: 2px;
+      width: 100%;
+      background-color: var(--color-background);
+      transition: all .2s ease-in-out;
+    }
+    &:hover::before{
+      height: 5px;
+    }
+  }
 `;
 
 const StyledPluginCard = styled.div`
   grid-column: 1 / 4;
   padding: 8rem 1.6rem;
-  background-color: black;
+  background-color: var(--color-text);
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  h2 {
+    font-size: 3.8rem;
+    letter-spacing: -.5px;
+    font-weight: 600;
+    color: var(--color-background);
+  }
+  a {
+    color: var(--color-background);
+    font-size: 1.8rem;
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -0.5rem;
+      left: 0;
+      height: 2px;
+      width: 100%;
+      background-color: var(--color-background);
+      transition: all .2s ease-in-out;
+    }
+    &:hover::before{
+      height: 5px;
+    }
+  }
 `;
 
 export default function BentoComp() {
@@ -81,7 +141,7 @@ export default function BentoComp() {
       </StyledPluginCard>
       <StyledProductHuntCard>
         <h2>
-          200+ ProductHunt <br /> Upvotes
+          200+ ProductHunt Upvotes
         </h2>
         <a href="#">Leave a review</a>
       </StyledProductHuntCard>
