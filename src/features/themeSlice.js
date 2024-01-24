@@ -22,6 +22,7 @@ const initialState = {
   primaryComplement: "#d4eef2",
   isDark: false,
   isExportOpen: false,
+  themeHistory: [],
 };
 
 const themeSlice = createSlice({
@@ -29,7 +30,11 @@ const themeSlice = createSlice({
   initialState,
   reducers: {
     defaultThemeLocalStorage: (state, action) => {
-      localStorage.setItem('lightPalette', JSON.stringify(state));
+      // Temayı local storage'da sakla
+      const { themeHistory, ...rest } = state; // themeHistory'yi ayır
+      const currentTheme = { ...rest }; // themeHistory olmadan temayı al
+      state.themeHistory.push(currentTheme);
+      localStorage.setItem('themeHistory', JSON.stringify(state.themeHistory));
     },
     changeTheme: (state, action) => {
       const red = Math.floor(Math.random() * 256);
@@ -45,7 +50,13 @@ const themeSlice = createSlice({
       state.backgroundColor = rgbToHex(lightColor(primary));
       state.textColor = rgbToHex(darkColor(primary));
       state.primaryComplement = rgbToHex(colorPalette.primaryComplement);
-      localStorage.setItem('lightPalette', JSON.stringify(state));
+      // Tema değişikliğini local storage'da sakla
+      const { themeHistory, ...rest } = state; // themeHistory'yi ayır
+      const currentTheme = { ...rest }; // themeHistory olmadan temayı al
+      state.themeHistory.push(currentTheme);
+      localStorage.setItem('themeHistory', JSON.stringify(state.themeHistory));
+
+      // Eğer temanın karanlık modda olması gerekiyorsa
       if(state.isDark) {
         state.isDark = true;
         state.primaryColor = rgbToHex(lightenColor(hexToRgb(state.primaryColor, 1.4)));
@@ -101,6 +112,31 @@ const themeSlice = createSlice({
     offExport: (state, action) => {
       state.isExportOpen = false;
     },
+    loadPreviousTheme: (state, action) => {
+      const previousThemes = localStorage.getItem('themeHistory');
+      if (previousThemes) {
+        const history = JSON.parse(previousThemes);
+        if (history.length > 1) {
+          const previousTheme = history[history.length - 2]; // Sonuncudan bir önceki eleman
+          console.log(previousTheme);
+          const newState = {
+            ...state,
+            primaryColor: previousTheme.primaryColor,
+            secondaryColor: previousTheme.secondaryColor,
+            accentColor: previousTheme.accentColor,
+            backgroundColor: previousTheme.backgroundColor,
+            textColor: previousTheme.textColor,
+            primaryComplement: previousTheme.primaryComplement,
+            themeHistory: [...history.slice(0, -1)], // Son eleman hariç tüm elemanları al
+          };
+          localStorage.setItem('themeHistory', JSON.stringify(history.slice(0, -1)));
+          return newState;
+        }
+      }
+      // Herhangi bir değişiklik olmazsa mevcut state'i geri döndür
+      return state;
+    },
+      
   },
 });
 
@@ -115,7 +151,8 @@ export const {
   returnToLight,
   defaultThemeLocalStorage,
   onExport,
-  offExport
+  offExport,
+  loadPreviousTheme
 } = themeSlice.actions;
 
 export default themeSlice.reducer;

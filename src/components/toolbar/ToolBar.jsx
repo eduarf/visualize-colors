@@ -6,10 +6,17 @@ import Secondary from "./components/Secondary";
 import Accent from "./components/Accent";
 import { BsDice5Fill } from "react-icons/bs";
 import { MdDarkMode } from "react-icons/md";
-import { changeTheme, darkTheme, returnToLight, onExport } from "../../features/ThemeSlice";
+import {
+  changeTheme,
+  darkTheme,
+  returnToLight,
+  onExport,
+} from "../../features/themeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { GrSun } from "react-icons/gr";
 import { CiExport } from "react-icons/ci";
+import { GrUndo } from "react-icons/gr";
+import { loadPreviousTheme } from "../../features/themeSlice";
 
 const StyledToolBar = styled.div`
   position: fixed;
@@ -30,44 +37,58 @@ const StyledDice = styled(BsDice5Fill)`
   font-size: 5.6rem;
   cursor: pointer;
   background-color: #fff;
-  margin: .5rem;
+  margin: 0.5rem;
 `;
 
 const StyledDarkMode = styled(MdDarkMode)`
   font-size: 5.6rem;
   cursor: pointer;
   background-color: #fff;
-  margin: .5rem;
+  margin: 0.5rem;
 `;
 
 const StyledLightMode = styled(GrSun)`
   font-size: 5.6rem;
   cursor: pointer;
   background-color: #fff;
-  margin: .5rem;
+  margin: 0.5rem;
 `;
 
 const StyledExportIcon = styled(CiExport)`
   font-size: 5.6rem;
   cursor: pointer;
   background-color: #fff;
-  margin: .5rem;
+  margin: 0.5rem;
 `;
 
+const StyledUndoIcon = styled(GrUndo)`
+  font-size: 5.6rem;
+  cursor: pointer;
+  background-color: #fff;
+  margin: 0.5rem;
+`;
 
 export default function ToolBar() {
   const isDark = useSelector((state) => state.theme.isDark);
   const dispatch = useDispatch();
   return (
-    <StyledToolBar id='toolbar'>
+    <StyledToolBar id="toolbar">
       <Text />
       <Background />
       <Primary />
       <Secondary />
       <Accent />
       <StyledDice onClick={() => dispatch(changeTheme())} />
-      { isDark ? <StyledLightMode id="toolbar" onClick={() => dispatch(returnToLight())} /> : <StyledDarkMode id='toolbar' onClick={() => dispatch(darkTheme())} /> }
+      {isDark ? (
+        <StyledLightMode
+          id="toolbar"
+          onClick={() => dispatch(returnToLight())}
+        />
+      ) : (
+        <StyledDarkMode id="toolbar" onClick={() => dispatch(darkTheme())} />
+      )}
       <StyledExportIcon onClick={() => dispatch(onExport())} />
+      <StyledUndoIcon onClick={() => dispatch(loadPreviousTheme())} />
     </StyledToolBar>
   );
 }
