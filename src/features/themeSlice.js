@@ -113,12 +113,13 @@ const themeSlice = createSlice({
       state.isExportOpen = false;
     },
     loadPreviousTheme: (state, action) => {
-      const previousThemes = localStorage.getItem('themeHistory');
-      if (previousThemes) {
-        const history = JSON.parse(previousThemes);
+      const themeHistory = localStorage.getItem('themeHistory');
+      const deletedThemes = localStorage.getItem('deletedThemes'); // Ekledik: Silinen temaları saklamak için
+      if (themeHistory) {
+        const history = JSON.parse(themeHistory);
+        const deletedThemesArray = deletedThemes ? JSON.parse(deletedThemes) : []; // Ekledik: DeletedThemes objesini al
         if (history.length > 1) {
-          const previousTheme = history[history.length - 2]; // Sonuncudan bir önceki eleman
-          console.log(previousTheme);
+          const previousTheme = history[history.length - 2];
           const newState = {
             ...state,
             primaryColor: previousTheme.primaryColor,
@@ -127,16 +128,41 @@ const themeSlice = createSlice({
             backgroundColor: previousTheme.backgroundColor,
             textColor: previousTheme.textColor,
             primaryComplement: previousTheme.primaryComplement,
-            themeHistory: [...history.slice(0, -1)], // Son eleman hariç tüm elemanları al
+            themeHistory: [...history.slice(0, -1)],
           };
-          localStorage.setItem('themeHistory', JSON.stringify(history.slice(0, -1)));
+    
+          deletedThemesArray.push(history.pop()); // Ekledik: Silinen temaları deletedThemesArray'a ekle
+          localStorage.setItem('themeHistory', JSON.stringify(history));
+          localStorage.setItem('deletedThemes', JSON.stringify(deletedThemesArray)); // Ekledik: Silinen temaları güncelle
           return newState;
         }
       }
-      // Herhangi bir değişiklik olmazsa mevcut state'i geri döndür
       return state;
     },
-      
+    loadNextTheme: (state, action) => {
+      const deletedThemes = localStorage.getItem('deletedThemes');
+      if (deletedThemes) {
+        const deletedThemesArray = JSON.parse(deletedThemes);
+        if (deletedThemesArray.length > 0) {
+          const nextTheme = deletedThemesArray.pop();
+          const newState = {
+            ...state,
+            primaryColor: nextTheme.primaryColor,
+            secondaryColor: nextTheme.secondaryColor,
+            accentColor: nextTheme.accentColor,
+            backgroundColor: nextTheme.backgroundColor,
+            textColor: nextTheme.textColor,
+            primaryComplement: nextTheme.primaryComplement,
+            themeHistory: [...state.themeHistory, nextTheme],
+          };
+    
+          localStorage.setItem('deletedThemes', JSON.stringify(deletedThemesArray));
+          localStorage.setItem('themeHistory', JSON.stringify(newState.themeHistory));
+          return newState;
+        }
+      }
+      return state;
+    },
   },
 });
 
@@ -152,7 +178,8 @@ export const {
   defaultThemeLocalStorage,
   onExport,
   offExport,
-  loadPreviousTheme
+  loadPreviousTheme,
+  loadNextTheme
 } = themeSlice.actions;
 
 export default themeSlice.reducer;

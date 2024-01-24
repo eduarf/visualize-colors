@@ -15,8 +15,8 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { GrSun } from "react-icons/gr";
 import { CiExport } from "react-icons/ci";
-import { GrUndo } from "react-icons/gr";
-import { loadPreviousTheme } from "../../features/themeSlice";
+import { GrUndo, GrRedo } from "react-icons/gr";
+import { loadPreviousTheme, loadNextTheme } from "../../features/themeSlice";
 
 const StyledToolBar = styled.div`
   position: fixed;
@@ -67,6 +67,12 @@ const StyledUndoIcon = styled(GrUndo)`
   background-color: #fff;
   margin: 0.5rem;
 `;
+const StyledRedoIcon = styled(GrRedo)`
+  font-size: 5.6rem;
+  cursor: pointer;
+  background-color: #fff;
+  margin: .5rem;
+`;
 
 export default function ToolBar() {
   const isDark = useSelector((state) => state.theme.isDark);
@@ -89,6 +95,7 @@ export default function ToolBar() {
       )}
       <StyledExportIcon onClick={() => dispatch(onExport())} />
       <StyledUndoIcon onClick={() => dispatch(loadPreviousTheme())} />
+      <StyledRedoIcon onClick={() => dispatch(loadNextTheme())} />
     </StyledToolBar>
   );
 }
