@@ -17,6 +17,7 @@ import { GrSun } from "react-icons/gr";
 import { CiExport } from "react-icons/ci";
 import { GrUndo, GrRedo } from "react-icons/gr";
 import { loadPreviousTheme, loadNextTheme } from "../../features/themeSlice";
+import TooltipComp from "../tooltip/TooltipComp";
 
 const StyledToolBar = styled.div`
   position: fixed;
@@ -59,6 +60,8 @@ const StyledExportIcon = styled(CiExport)`
   cursor: pointer;
   background-color: #fff;
   margin: 0.5rem;
+  display: inline-block;
+  position: relative;
 `;
 
 const StyledUndoIcon = styled(GrUndo)`
@@ -73,6 +76,24 @@ const StyledRedoIcon = styled(GrRedo)`
   background-color: #fff;
   margin: .5rem;
 `;
+
+const StyledTooltipContainer = styled.div`
+  opacity: 0;
+  visibility: hidden;
+`;
+
+const StyledIconContainer = styled.div`
+  position: relative;
+  &:hover {
+    ${StyledTooltipContainer} {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+`;
+
+
+
 
 export default function ToolBar() {
   const isDark = useSelector((state) => state.theme.isDark);
@@ -93,8 +114,19 @@ export default function ToolBar() {
       ) : (
         <StyledDarkMode id="toolbar" onClick={() => dispatch(darkTheme())} />
       )}
-      <StyledExportIcon onClick={() => dispatch(onExport())} />
+      <StyledIconContainer>
+        <StyledExportIcon onClick={() => dispatch(onExport())} />
+      <StyledTooltipContainer>
+      <TooltipComp title='Export' subtitle='(CTRL + E)'></TooltipComp>
+      </StyledTooltipContainer>
+      </StyledIconContainer>
+
+      <StyledIconContainer>
       <StyledUndoIcon onClick={() => dispatch(loadPreviousTheme())} />
+      <StyledTooltipContainer>
+        <TooltipComp title='Undo' subtitle="(← Left arrow)" />
+      </StyledTooltipContainer>
+      </StyledIconContainer>
       <StyledRedoIcon onClick={() => dispatch(loadNextTheme())} />
     </StyledToolBar>
   );
