@@ -15,6 +15,7 @@ const StyledTooltipComp = styled.div`
         font-size: 1.5rem;
         font-weight: 600;
         text-align: center;
+        white-space: nowrap;
     }
     span {
         color: #a8a8a8;

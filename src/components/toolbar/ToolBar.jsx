@@ -105,7 +105,16 @@ export default function ToolBar() {
       <Primary />
       <Secondary />
       <Accent />
+      <StyledIconContainer>
+
       <StyledDice onClick={() => dispatch(changeTheme())} />
+      <StyledTooltipContainer>
+        <TooltipComp title='Randomize Colors' subtitle="(Spacebar)" />
+      </StyledTooltipContainer>
+      </StyledIconContainer>
+      
+      <StyledIconContainer>
+
       {isDark ? (
         <StyledLightMode
           id="toolbar"
@@ -114,6 +123,10 @@ export default function ToolBar() {
       ) : (
         <StyledDarkMode id="toolbar" onClick={() => dispatch(darkTheme())} />
       )}
+      <StyledTooltipContainer>
+        <TooltipComp title="Dark/Light" subtitle="(Alt + T)"/>
+      </StyledTooltipContainer>
+      </StyledIconContainer>
       <StyledIconContainer>
         <StyledExportIcon onClick={() => dispatch(onExport())} />
       <StyledTooltipContainer>
@@ -127,7 +140,13 @@ export default function ToolBar() {
         <TooltipComp title='Undo' subtitle="(← Left arrow)" />
       </StyledTooltipContainer>
       </StyledIconContainer>
+
+      <StyledIconContainer>
       <StyledRedoIcon onClick={() => dispatch(loadNextTheme())} />
+      <StyledTooltipContainer>
+        <TooltipComp title='Redo' subtitle="(Right arrow →)" />
+      </StyledTooltipContainer>
+      </StyledIconContainer>
     </StyledToolBar>
   );
 }
