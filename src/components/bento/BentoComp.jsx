@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import BentoLink from "./components/BentoLink";
 
 const StyledBentoComp = styled.div`
   padding: 6vh 8vw;
@@ -67,24 +68,6 @@ const StyledProductHuntCard = styled.div`
     font-weight: 600;
     color: var(--color-background);
   }
-  a {
-    color: var(--color-background);
-    font-size: 1.8rem;
-    position: relative;
-    &::before {
-      content: '';
-      position: absolute;
-      bottom: -0.5rem;
-      left: 0;
-      height: 2px;
-      width: 100%;
-      background-color: var(--color-background);
-      transition: all .2s ease-in-out;
-    }
-    &:hover::before{
-      height: 5px;
-    }
-  }
 `;
 
 const StyledPluginCard = styled.div`
@@ -101,24 +84,6 @@ const StyledPluginCard = styled.div`
     letter-spacing: -.5px;
     font-weight: 600;
     color: var(--color-background);
-  }
-  a {
-    color: var(--color-background);
-    font-size: 1.8rem;
-    position: relative;
-    &::before {
-      content: '';
-      position: absolute;
-      bottom: -0.5rem;
-      left: 0;
-      height: 2px;
-      width: 100%;
-      background-color: var(--color-background);
-      transition: all .2s ease-in-out;
-    }
-    &:hover::before{
-      height: 5px;
-    }
   }
 `;
 
@@ -137,13 +102,13 @@ export default function BentoComp() {
       </StyledFreeCard>
       <StyledPluginCard>
         <h2>11K+ Plugin Users</h2>
-        <a href="#">Check it out on Figma</a>
+        <BentoLink link='Check it out on Figma' />
       </StyledPluginCard>
       <StyledProductHuntCard>
         <h2>
           200+ ProductHunt Upvotes
         </h2>
-        <a href="#">Leave a review</a>
+        <BentoLink link='Leave a review' />
       </StyledProductHuntCard>
     </StyledBentoComp>
   );
