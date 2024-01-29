@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import WhyColorSelector from "../../components/why/WhyColorSelector";
 import BentoComp from "../../components/bento/BentoComp";
 import InfoBox from "../../components/infobox/InfoBox";
+import Pricing from "../../components/pricing/Pricing";
 
 const StyledHome = styled.div`
 position: relative;
@@ -24,6 +25,7 @@ const Home = () => {
     <WhyColorSelector />
     <BentoComp />
     <InfoBox />
+    <Pricing />
   </StyledHome>;
 };
 

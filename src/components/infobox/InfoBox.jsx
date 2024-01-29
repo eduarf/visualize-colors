@@ -4,7 +4,6 @@ import InfoBoxRight from "./comps/InfoBoxRight";
 
 
 const StyledInfoBox = styled.div`
-    margin-bottom: 100rem;
     padding: 10vh 8vw;
     display: flex;
     @media only screen and (max-width: 1000px){
