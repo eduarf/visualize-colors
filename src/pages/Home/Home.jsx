@@ -6,6 +6,7 @@ import ExportComp from "../../components/export/ExportComp";
 import { useSelector } from "react-redux";
 import WhyColorSelector from "../../components/why/WhyColorSelector";
 import BentoComp from "../../components/bento/BentoComp";
+import InfoBox from "../../components/infobox/InfoBox";
 
 const StyledHome = styled.div`
 position: relative;
@@ -22,6 +23,7 @@ const Home = () => {
     {isExportOpen ?  <ExportComp /> : null} 
     <WhyColorSelector />
     <BentoComp />
+    <InfoBox />
   </StyledHome>;
 };
 
