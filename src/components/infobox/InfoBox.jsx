@@ -7,6 +7,10 @@ const StyledInfoBox = styled.div`
     margin-bottom: 100rem;
     padding: 10vh 8vw;
     display: flex;
+    @media only screen and (max-width: 1000px){
+        flex-direction: column;
+        padding: 2vh 4vw;
+    }
 `;
 
 export default function InfoBox() {

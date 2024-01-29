@@ -7,17 +7,39 @@ const StyledInfoBoxRight = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 5rem;
+    @media only screen and (max-width: 1200px) {
+        gap: 3rem;
+    }
+    @media only screen and (max-width: 1000px){
+        width: 100%;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        gap: 2rem;
+    }
 `;
 
 const StyledParagraphContainer = styled.div`
     width: 30%;
     flex-grow: 2;
+    @media only screen and (max-width: 1200px){
+        width: 35%;
+    }
+    @media only screen and (max-width: 1000px){
+        width: 100%;
+    }
 `
 const StyledParagraph = styled.p`
     width: 60%;
     line-height: 2.2;
     font-size: 1.8rem;
     position: relative;
+    @media only screen and (max-width: 1200px){
+        font-size: 1.6rem;
+        width: 80%;
+    }
+    @media only screen and (max-width: 1000px){
+        width: 100%;
+    }
     &::before {
         content: '${props => props.$index}';
         position: absolute;
@@ -26,6 +48,10 @@ const StyledParagraph = styled.p`
         font-size: 4rem;
         font-weight: 900;
         color: var(--color-accent);
+        @media only screen and (max-width: 1000px){
+            top: 0;
+            font-size: 3.2rem;
+        }
     }
     
 `;

@@ -9,7 +9,7 @@ const StyledBentoComp = styled.div`
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: 60% 40%;
   max-width: 1920px;
-  height: 70rem;
+  min-height: 70rem;
   @media only screen and (max-width: 1000px){
     grid-template-columns: repeat(1, minmax(0, 1fr));
     grid-template-rows: none;
