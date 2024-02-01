@@ -1,12 +1,4 @@
 import { nanoid } from "nanoid";
-// import  CssContent  from "./src/components/popup/components/CssContent";
-// import  DownloadContent  from "./src/components/popup/components/DownloadContent";
-// import  TailwindContent  from "./src/components/popup/components/TailwindContent";
-// import  ScssContent  from "./src/components/popup/components/ScssContent";
-// import  CustomCodeContent  from "./src/components/popup/components/CustomCodeContent";
-// import  ShadesContent  from "./src/components/popup/components/ShadesContent";
-// import  GradientsContent  from "./src/components/popup/components/GradientsContent";
-// import  QrContent  from "./src/components/popup/components/QrContent";
 
 
 export const popupMenuItems = [
@@ -72,5 +64,76 @@ export const subMenuItems = [
   {
     id: nanoid(),
     name: 'OKLCH',
+  },
+];
+
+export const pricingData = [
+  {
+      id: nanoid(),
+      header: 'Basic',
+      pricing: 'Free',
+      btnName: 'Get Started',
+      lists: [
+          {
+              id: nanoid(),
+              text: 'Choose any color',
+          },
+          {
+              id: nanoid(),
+              text: 'Export all you want'
+          },
+      ],
+  },
+  {
+      id: nanoid(),
+      header: 'Pro',
+      pricing: '$0.00 / month',
+      btnName: 'Go to Dashboard',
+      lists: [
+          {
+              id: nanoid(),
+              text: 'Choose any color'
+          },
+          {
+              id: nanoid(),
+              text: 'Export all you want Get a big thank yout'
+          },
+          {
+              id: nanoid(),
+              text: 'for checking this site out'
+          },
+          {
+              id: nanoid(),
+              text: 'Get access to dashboard'
+          },
+      ],
+  },
+  {
+      id: nanoid(),
+      header: 'Enterprise',
+      pricing: '$0.00 / month',
+      btnName: 'Learn More',
+      lists: [
+          {
+              id: nanoid(),
+              text: 'Choose any color'
+          },
+          {
+              id: nanoid(),
+              text: 'Export all you want Get a big thank yout'
+          },
+          {
+              id: nanoid(),
+              text: 'for checking this site out'
+          },
+          {
+              id: nanoid(),
+              text: 'Get access to dashboard'
+          },
+          {
+              id: nanoid(),
+              text: 'Super duper exclusive members-only content.'
+          },
+      ],
   },
 ];
