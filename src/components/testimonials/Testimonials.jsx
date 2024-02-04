@@ -3,7 +3,6 @@ import { testimonialsItems } from "../../../data";
 import { LiaStarSolid } from "react-icons/lia";
 
 const StyledTestimonials = styled.section`
-  margin-bottom: 100rem;
   padding: 10vh 8vw;
   @media only screen and (max-width: 768px) {
     padding: 2vh 6vw;

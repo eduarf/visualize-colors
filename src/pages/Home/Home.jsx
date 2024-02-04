@@ -9,6 +9,7 @@ import BentoComp from "../../components/bento/BentoComp";
 import InfoBox from "../../components/infobox/InfoBox";
 import Pricing from "../../components/pricing/Pricing";
 import Testimonials from "../../components/testimonials/Testimonials";
+import Faq from "../../components/faq/Faq";
 
 const StyledHome = styled.div`
   position: relative;
@@ -28,6 +29,7 @@ const Home = () => {
       <InfoBox />
       <Pricing />
       <Testimonials />
+      <Faq />
     </StyledHome>
   );
 };
