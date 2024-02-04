@@ -6,7 +6,6 @@ import PrimaryButton from "../buttons/PrimaryButton";
 import SecondaryButton from "../buttons/SecondaryButton";
 
 const StyledPricing = styled.section`
-  margin-bottom: 100rem;
   padding: 10vh 8vw;
   @media only screen and (max-width: 1200px) {
     padding: 10vh 4vw;
