@@ -5,17 +5,35 @@ import { LiaStarSolid } from "react-icons/lia";
 const StyledTestimonials = styled.section`
   margin-bottom: 100rem;
   padding: 10vh 8vw;
+  @media only screen and (max-width: 768px) {
+    padding: 2vh 6vw;
+  }
 `;
 
 const StyledHeader = styled.h2`
   font-size: 5rem;
   font-weight: 800;
   text-align: center;
+  @media only screen and (max-width: 1200px) {
+    font-size: 4.4rem;
+  }
+  @media only screen and (max-width: 1000px) {
+    font-size: 4rem;
+  }
+  @media only screen and (max-width: 768px) {
+    font-size: 3.6rem;
+  }
 `;
 const StyledSubtitle = styled.h5`
   font-size: 2.2rem;
   font-weight: 500;
   text-align: center;
+  @media only screen and (max-width: 1200px) {
+    font-size: 2rem;
+  }
+  @media only screen and (max-width: 1000px) {
+    font-size: 1.8rem;
+  }
 `;
 
 const StyledTestimonialsContainer = styled.div`
@@ -23,6 +41,9 @@ const StyledTestimonialsContainer = styled.div`
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 2rem;
   margin-top: 5rem;
+  @media only screen and (max-width: 1000px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
 `;
 
 const StyledTestimonial = styled.div`
@@ -38,9 +59,9 @@ const StyledReviewer = styled.div`
   display: flex;
   gap: 3rem;
   align-items: center;
+  justify-content: flex-start;
   font-size: 1.8rem;
-  span {
-    color: gray;
+  @media only screen and (max-width: 1200px) {
     font-size: 1.6rem;
   }
 `;
@@ -56,7 +77,15 @@ const StyledReviewerImage = styled.div`
   border: 2px solid var(--color-text);
 `;
 
-const StyledReviewerName = styled.div``;
+const StyledReviewerName = styled.div`
+  span {
+    color: gray;
+    font-size: 1.6rem;
+    @media only screen and (max-width: 1200px) {
+      font-size: 1.4rem;
+    }
+  }
+`;
 
 const StyledIconContainer = styled.div``;
 
@@ -69,6 +98,13 @@ const StyledReview = styled.p`
   font-size: 1.8rem;
   line-height: 2;
   width: 80%;
+  @media only screen and (max-width: 1200px) {
+    width: 100%;
+    font-size: 1.6rem;
+  }
+  @media only screen and (max-width: 500px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export default function Testimonials() {
