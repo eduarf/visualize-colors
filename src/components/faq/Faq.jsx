@@ -9,6 +9,10 @@ const StyledFaq = styled.section`
   display: grid;
   grid-template-columns: 45% 55%;
   gap: 2rem;
+  @media only screen and (max-width: 1000px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    padding: 4vh 6vw;
+  }
 `;
 const AccordionContainer = styled.div`
   display: flex;
@@ -32,6 +36,16 @@ const AccordionHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media only screen and (max-width: 1200px) {
+    font-size: 2.2rem;
+  }
+  @media only screen and (max-width: 1000px) {
+    font-size: 2rem;
+  }
+  @media only screen and (max-width: 768px) {
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
 `;
 
 const AccordionContent = styled.div`
@@ -47,6 +61,10 @@ const AccordionContent = styled.div`
     line-height: 2;
     font-weight: 400;
     white-space: pre-wrap;
+    @media only screen and (max-width: 768px) {
+      font-size: 1.6rem;
+      width: 100%;
+    }
   }
 `;
 
@@ -55,6 +73,12 @@ const StyledIcon = styled(FaPlus)`
   transform: ${(props) => (props.isOpen ? "rotate(45deg)" : "rotate(0)")};
   color: var(--color-accent);
   font-size: 2.8rem;
+  @media only screen and (max-width: 1000px) {
+    font-size: 2.4rem;
+  }
+  @media only screen and (max-width: 768px) {
+    font-size: 2rem;
+  }
 `;
 
 const StyledHeaderContainer = styled.div`
@@ -65,12 +89,26 @@ const StyledHeaderContainer = styled.div`
 const StyledHeader = styled.h2`
   font-size: 5rem;
   font-weight: 800;
-  letter-spacing: 2px;
+  @media only screen and (max-width: 1200px) {
+    font-size: 4.4rem;
+  }
+  @media only screen and (max-width: 1000px) {
+    font-size: 4rem;
+  }
+  @media only screen and (max-width: 768px) {
+    font-size: 3.6rem;
+  }
 `;
 const StyledSubtitle = styled.h5`
   font-size: 2.4rem;
   font-weight: 500;
   width: 70%;
+  @media only screen and (max-width: 1200px) {
+    font-size: 2rem;
+  }
+  @media only screen and (max-width: 1000px) {
+    font-size: 1.8rem;
+  }
 `;
 
 export default function Faq() {
