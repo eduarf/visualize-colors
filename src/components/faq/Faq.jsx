@@ -5,7 +5,6 @@ import { FaPlus } from "react-icons/fa";
 
 const StyledFaq = styled.section`
   padding: 10vh 8vw;
-  margin-bottom: 100rem;
   display: grid;
   grid-template-columns: 45% 55%;
   gap: 2rem;

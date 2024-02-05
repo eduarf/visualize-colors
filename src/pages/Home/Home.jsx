@@ -10,6 +10,7 @@ import InfoBox from "../../components/infobox/InfoBox";
 import Pricing from "../../components/pricing/Pricing";
 import Testimonials from "../../components/testimonials/Testimonials";
 import Faq from "../../components/faq/Faq";
+import Featured from "../../components/featured/Featured";
 
 const StyledHome = styled.div`
   position: relative;
@@ -30,6 +31,7 @@ const Home = () => {
       <Pricing />
       <Testimonials />
       <Faq />
+      <Featured />
     </StyledHome>
   );
 };
