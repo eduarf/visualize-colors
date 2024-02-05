@@ -164,6 +164,30 @@ export function createColorPalette(rgb) {
   };
 }
 
+export function isColorDark(color) {
+  // Renk değerlerini elde et
+  let r, g, b;
+  if (color.startsWith("#")) {
+    // Hex renk kodunu ayrıştır
+    r = parseInt(color.slice(1, 3), 16);
+    g = parseInt(color.slice(3, 5), 16);
+    b = parseInt(color.slice(5, 7), 16);
+  } else if (color.startsWith("rgb")) {
+    // rgb veya rgba renk değerini ayrıştır
+    const match = color.match(/(\d+),\s*(\d+),\s*(\d+)/);
+    if (match) {
+      r = parseInt(match[1], 10);
+      g = parseInt(match[2], 10);
+      b = parseInt(match[3], 10);
+    }
+  }
+
+  // Renk koyuluğunu değerlendir (örneğin, RGB ortalama değeri)
+  const brightness = (r + g + b) / 3;
+
+  // Eğer ortalama değer 128'den küçükse renk koyu kabul edilir
+  return brightness < 128;
+}
 
 
 

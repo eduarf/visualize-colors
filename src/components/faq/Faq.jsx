@@ -2,6 +2,8 @@ import { useState } from "react";
 import styled from "styled-components";
 import { accordionItems } from "../../../data";
 import { FaPlus } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import { isColorDark } from "../utils/helpers";
 
 const StyledFaq = styled.section`
   padding: 10vh 8vw;
@@ -35,6 +37,8 @@ const AccordionHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  color: ${(props) =>
+    props.$isDark ? "var(--color-background)" : "var(--color-text)"};
   @media only screen and (max-width: 1200px) {
     font-size: 2.2rem;
   }
@@ -112,6 +116,10 @@ const StyledSubtitle = styled.h5`
 
 export default function Faq() {
   const [openIndex, setOpenIndex] = useState(null);
+  const primaryComplement = useSelector(
+    (state) => state.theme.primaryComplement
+  );
+  const isPrimaryComplementDark = isColorDark(primaryComplement);
 
   const handleToggle = (index) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -127,7 +135,10 @@ export default function Faq() {
       <AccordionContainer>
         {accordionItems.map((item, index) => (
           <AccordionItem key={index}>
-            <AccordionHeader onClick={() => handleToggle(index)}>
+            <AccordionHeader
+              $isDark={isPrimaryComplementDark}
+              onClick={() => handleToggle(index)}
+            >
               {item.title}
               <StyledIcon isOpen={openIndex === index} />
             </AccordionHeader>
