@@ -2,8 +2,10 @@ import { nanoid } from "nanoid";
 import styled from "styled-components";
 
 const StyledFeatured = styled.section`
-  margin-bottom: 100rem;
   padding: 10vh 8vw;
+  @media only screen and (max-width: 1000px) {
+    padding: 4vh 4vw;
+  }
 `;
 
 const StyledHeader = styled.h2`
@@ -46,6 +48,9 @@ const StyledCard = styled.div`
   &:hover {
     background-color: var(--color-primary);
   }
+  @media only screen and (max-width: 500px) {
+    padding: 3rem;
+  }
 `;
 
 const StyledLink = styled.a`
@@ -59,6 +64,11 @@ const StyledCardContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 6rem;
+  @media only screen and (max-width: 1000px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 3rem;
+  }
 `;
 export default function Featured() {
   const data = [
