@@ -12,10 +12,15 @@ import Testimonials from "../../components/testimonials/Testimonials";
 import Faq from "../../components/faq/Faq";
 import Featured from "../../components/featured/Featured";
 import End from "../../components/end/End";
+import Footer from "../../components/footer/Footer";
 
 const StyledHome = styled.div`
   position: relative;
   background-color: var(--color-background);
+`;
+
+const StyledCodedBy = styled.p`
+  text-align: center;
 `;
 
 const Home = () => {
@@ -34,6 +39,8 @@ const Home = () => {
       <Faq />
       <Featured />
       <End />
+      <Footer />
+      <StyledCodedBy>Coded By - The Great B</StyledCodedBy>
     </StyledHome>
   );
 };

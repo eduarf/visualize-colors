@@ -2,7 +2,6 @@ import styled from "styled-components";
 import PrimaryButton from "../buttons/PrimaryButton";
 
 const StyledEnd = styled.div`
-  margin-bottom: 100rem;
   padding: 10vh 8vw;
   display: flex;
   flex-direction: column;
