@@ -55,6 +55,7 @@ const themeSlice = createSlice({
       const currentTheme = { ...rest }; // themeHistory olmadan temayı al
       state.themeHistory.push(currentTheme);
       localStorage.setItem('themeHistory', JSON.stringify(state.themeHistory));
+      localStorage.setItem('lightPalette', JSON.stringify(state));
 
       // Eğer temanın karanlık modda olması gerekiyorsa
       if(state.isDark) {
