@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import LogoSite from "../logo/LogoSite";
 import { nanoid } from "nanoid";
+import { useSelector } from "react-redux";
+import { isColorDark } from "../utils/helpers";
 
 const StyledFooter = styled.footer`
   margin-bottom: 5rem;
@@ -110,11 +112,21 @@ const StyledLinksContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
-  a {
-    font-size: 1.8rem;
-    color: var(--color-text);
-    cursor: pointer;
-  }
+`;
+const StyledMenuLink = styled.a`
+  font-size: 1.8rem;
+  color: ${(props) => {
+    if (props.$isDark && props.$isThemeDark) {
+      return "#fff";
+    } else if (props.$isDark && !props.$isThemeDark) {
+      return "#fff";
+    } else if (!props.$isDark && props.$isThemeDark) {
+      return "#000";
+    } else {
+      return "#000";
+    }
+  }};
+  cursor: pointer;
 `;
 
 const StyledBottomContent = styled.div`
@@ -131,6 +143,11 @@ const StyledBottomContent = styled.div`
 `;
 
 export default function Footer() {
+  const primaryComp = useSelector((state) => state.theme.primaryComplement);
+  const isThemeDark = useSelector((state) => state.theme.isDark);
+  const isPrimaryCompDark = isColorDark(primaryComp);
+  console.log(isPrimaryCompDark);
+
   const footerData = [
     {
       id: nanoid(),
@@ -176,7 +193,15 @@ export default function Footer() {
                 <StyledLinkHeader>{item.header}</StyledLinkHeader>
                 <StyledLinksContainer>
                   {item.items.map((item) => {
-                    return <a key={nanoid()}>{item}</a>;
+                    return (
+                      <StyledMenuLink
+                        $isDark={isPrimaryCompDark}
+                        $isThemeDark={isThemeDark}
+                        key={nanoid()}
+                      >
+                        {item}
+                      </StyledMenuLink>
+                    );
                   })}
                 </StyledLinksContainer>
               </StyledFooterMenu>

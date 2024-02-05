@@ -16,6 +16,7 @@ const StyledHeader = styled.h2`
   font-size: 5.2rem;
   font-weight: 800;
   text-align: center;
+  color: var(--color-text);
   @media only screen and (max-width: 1200px) {
     font-size: 4.2rem;
   }
@@ -27,6 +28,7 @@ const StyledSubtitle = styled.h5`
   font-size: 2.2rem;
   font-weight: 500;
   text-align: center;
+  color: var(--color-text);
   @media only screen and (max-width: 1200px) {
     font-size: 2rem;
   }

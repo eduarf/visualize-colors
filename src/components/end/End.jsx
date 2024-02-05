@@ -16,6 +16,7 @@ const StyledHeader = styled.h2`
   font-size: 6rem;
   font-weight: 800;
   letter-spacing: -0.5px;
+  color: var(--color-text);
   span {
     background-image: linear-gradient(
       135deg,

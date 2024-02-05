@@ -92,6 +92,7 @@ const StyledHeaderContainer = styled.div`
 const StyledHeader = styled.h2`
   font-size: 5rem;
   font-weight: 800;
+  color: var(--color-text);
   @media only screen and (max-width: 1200px) {
     font-size: 4.4rem;
   }
@@ -106,6 +107,7 @@ const StyledSubtitle = styled.h5`
   font-size: 2.4rem;
   font-weight: 500;
   width: 70%;
+  color: var(--color-text);
   @media only screen and (max-width: 1200px) {
     font-size: 2rem;
   }
