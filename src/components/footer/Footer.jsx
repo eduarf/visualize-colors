@@ -5,12 +5,18 @@ import { nanoid } from "nanoid";
 const StyledFooter = styled.footer`
   margin-bottom: 5rem;
   padding: 10vh 8vw;
+  @media only screen and (max-width: 1000px) {
+    padding: 6vh 4vw;
+  }
 `;
 
 const StyledFooterContainer = styled.div`
   background-color: var(--color-primaryComp);
   border-radius: 1rem;
   padding: 3em 5em;
+  @media only screen and (max-width: 1000px) {
+    padding: 2em;
+  }
 `;
 
 const StyledFooterCols = styled.div`
@@ -18,6 +24,10 @@ const StyledFooterCols = styled.div`
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 3rem;
   margin-top: 5rem;
+  @media only screen and (max-width: 1000px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1rem;
+  }
 `;
 const StyledFooterCol = styled.div`
   display: flex;
@@ -35,9 +45,21 @@ const StyledFooterCol = styled.div`
     font-weight: 800;
     border-radius: 1rem;
     cursor: pointer;
+    @media only screen and (max-width: 1200px) {
+      width: 100%;
+    }
+    @media only screen and (max-width: 1000px) {
+      max-width: max-content;
+    }
     img {
       height: 3rem;
       animation: shake-anim 3s infinite;
+      @media only screen and (max-width: 1200px) {
+        height: 2rem;
+      }
+      @media only screen and (max-width: 1000px) {
+        height: 3rem;
+      }
     }
   }
   @keyframes shake-anim {
@@ -164,7 +186,7 @@ export default function Footer() {
         <hr />
         <StyledBottomContent>
           <p>
-            Made with ❤ by <a href="#">The Great B</a>
+            Made with ❤ by <a href="#">Love</a>
           </p>
           <p>No cookies 🍪 Just colors 🎨 and fonts 🔡</p>
         </StyledBottomContent>
