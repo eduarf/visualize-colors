@@ -8,6 +8,9 @@ const StyledEnd = styled.div`
   flex-direction: column;
   gap: 3rem;
   align-items: center;
+  @media only screen and (max-width: 1000px) {
+    padding: 4vh 4vw;
+  }
 `;
 
 const StyledHeader = styled.h2`
@@ -23,6 +26,16 @@ const StyledHeader = styled.h2`
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+  @media only screen and (max-width: 1200px) {
+    font-size: 5rem;
+  }
+  @media only screen and (max-width: 1000px) {
+    font-size: 4rem;
+  }
+  @media only screen and (max-width: 768px) {
+    text-align: center;
+    font-size: 3.4rem;
   }
 `;
 
