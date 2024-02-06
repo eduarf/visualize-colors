@@ -13,6 +13,7 @@ import Faq from "../../components/faq/Faq";
 import Featured from "../../components/featured/Featured";
 import End from "../../components/end/End";
 import Footer from "../../components/footer/Footer";
+import ToolbarRespons from "../../components/toolbar/ToolbarRespons";
 
 const StyledHome = styled.div`
   position: relative;
@@ -40,6 +41,7 @@ const Home = () => {
       <Featured />
       <End />
       <Footer />
+      <ToolbarRespons />
       <StyledCodedBy>Coded By - The Great B</StyledCodedBy>
     </StyledHome>
   );

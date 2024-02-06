@@ -10,7 +10,7 @@ import {
   darkColor,
   lightenColor,
   darkenColor,
-  createColorPalette
+  createColorPalette,
 } from "../components/utils/helpers";
 
 const initialState = {
@@ -22,6 +22,7 @@ const initialState = {
   primaryComplement: "#d4eef2",
   isDark: false,
   isExportOpen: false,
+  isToolbarOpen: false,
   themeHistory: [],
 };
 
@@ -34,7 +35,7 @@ const themeSlice = createSlice({
       const { themeHistory, ...rest } = state; // themeHistory'yi ayır
       const currentTheme = { ...rest }; // themeHistory olmadan temayı al
       state.themeHistory.push(currentTheme);
-      localStorage.setItem('themeHistory', JSON.stringify(state.themeHistory));
+      localStorage.setItem("themeHistory", JSON.stringify(state.themeHistory));
     },
     changeTheme: (state, action) => {
       const red = Math.floor(Math.random() * 256);
@@ -54,20 +55,25 @@ const themeSlice = createSlice({
       const { themeHistory, ...rest } = state; // themeHistory'yi ayır
       const currentTheme = { ...rest }; // themeHistory olmadan temayı al
       state.themeHistory.push(currentTheme);
-      localStorage.setItem('themeHistory', JSON.stringify(state.themeHistory));
-      localStorage.setItem('lightPalette', JSON.stringify(state));
+      localStorage.setItem("themeHistory", JSON.stringify(state.themeHistory));
+      localStorage.setItem("lightPalette", JSON.stringify(state));
 
       // Eğer temanın karanlık modda olması gerekiyorsa
-      if(state.isDark) {
+      if (state.isDark) {
         state.isDark = true;
-        state.primaryColor = rgbToHex(lightenColor(hexToRgb(state.primaryColor, 1.4)));
-        state.secondaryColor = rgbToHex(darkenColor(hexToRgb(state.secondaryColor, 1.7)));
+        state.primaryColor = rgbToHex(
+          lightenColor(hexToRgb(state.primaryColor, 1.4))
+        );
+        state.secondaryColor = rgbToHex(
+          darkenColor(hexToRgb(state.secondaryColor, 1.7))
+        );
         state.accentColor = rgbToHex(darkenColor(hexToRgb(state.accentColor)));
-        state.backgroundColor = rgbToHex(darkColor(hexToRgb(state.backgroundColor)));
+        state.backgroundColor = rgbToHex(
+          darkColor(hexToRgb(state.backgroundColor))
+        );
         state.textColor = rgbToHex(lightColor(hexToRgb(state.textColor)));
-        localStorage.setItem('darkTheme', JSON.stringify(state));
-      }
-      else return;
+        localStorage.setItem("darkTheme", JSON.stringify(state));
+      } else return;
     },
     changeText: (state, action) => {
       state.textColor = action.payload;
@@ -86,17 +92,23 @@ const themeSlice = createSlice({
     },
     darkTheme: (state, action) => {
       state.isDark = true;
-      state.primaryColor = rgbToHex(lightenColor(hexToRgb(state.primaryColor, 1.4)));
-      state.secondaryColor = rgbToHex(darkenColor(hexToRgb(state.secondaryColor, 1.7)));
+      state.primaryColor = rgbToHex(
+        lightenColor(hexToRgb(state.primaryColor, 1.4))
+      );
+      state.secondaryColor = rgbToHex(
+        darkenColor(hexToRgb(state.secondaryColor, 1.7))
+      );
       state.accentColor = rgbToHex(darkenColor(hexToRgb(state.accentColor)));
-      state.backgroundColor = rgbToHex(darkColor(hexToRgb(state.backgroundColor)));
+      state.backgroundColor = rgbToHex(
+        darkColor(hexToRgb(state.backgroundColor))
+      );
       state.textColor = rgbToHex(lightColor(hexToRgb(state.textColor)));
-      localStorage.setItem('darkTheme', JSON.stringify(state));
+      localStorage.setItem("darkTheme", JSON.stringify(state));
     },
     returnToLight: (state, action) => {
       state.isDark = false;
-      const storedPalette = localStorage.getItem('lightPalette');
-    
+      const storedPalette = localStorage.getItem("lightPalette");
+
       if (storedPalette) {
         const previousPalette = JSON.parse(storedPalette);
         state.primaryColor = previousPalette.primaryColor;
@@ -114,11 +126,13 @@ const themeSlice = createSlice({
       state.isExportOpen = false;
     },
     loadPreviousTheme: (state, action) => {
-      const themeHistory = localStorage.getItem('themeHistory');
-      const deletedThemes = localStorage.getItem('deletedThemes'); // Ekledik: Silinen temaları saklamak için
+      const themeHistory = localStorage.getItem("themeHistory");
+      const deletedThemes = localStorage.getItem("deletedThemes"); // Ekledik: Silinen temaları saklamak için
       if (themeHistory) {
         const history = JSON.parse(themeHistory);
-        const deletedThemesArray = deletedThemes ? JSON.parse(deletedThemes) : []; // Ekledik: DeletedThemes objesini al
+        const deletedThemesArray = deletedThemes
+          ? JSON.parse(deletedThemes)
+          : []; // Ekledik: DeletedThemes objesini al
         if (history.length > 1) {
           const previousTheme = history[history.length - 2];
           const newState = {
@@ -131,17 +145,20 @@ const themeSlice = createSlice({
             primaryComplement: previousTheme.primaryComplement,
             themeHistory: [...history.slice(0, -1)],
           };
-    
+
           deletedThemesArray.push(history.pop()); // Ekledik: Silinen temaları deletedThemesArray'a ekle
-          localStorage.setItem('themeHistory', JSON.stringify(history));
-          localStorage.setItem('deletedThemes', JSON.stringify(deletedThemesArray)); // Ekledik: Silinen temaları güncelle
+          localStorage.setItem("themeHistory", JSON.stringify(history));
+          localStorage.setItem(
+            "deletedThemes",
+            JSON.stringify(deletedThemesArray)
+          ); // Ekledik: Silinen temaları güncelle
           return newState;
         }
       }
       return state;
     },
     loadNextTheme: (state, action) => {
-      const deletedThemes = localStorage.getItem('deletedThemes');
+      const deletedThemes = localStorage.getItem("deletedThemes");
       if (deletedThemes) {
         const deletedThemesArray = JSON.parse(deletedThemes);
         if (deletedThemesArray.length > 0) {
@@ -156,13 +173,22 @@ const themeSlice = createSlice({
             primaryComplement: nextTheme.primaryComplement,
             themeHistory: [...state.themeHistory, nextTheme],
           };
-    
-          localStorage.setItem('deletedThemes', JSON.stringify(deletedThemesArray));
-          localStorage.setItem('themeHistory', JSON.stringify(newState.themeHistory));
+
+          localStorage.setItem(
+            "deletedThemes",
+            JSON.stringify(deletedThemesArray)
+          );
+          localStorage.setItem(
+            "themeHistory",
+            JSON.stringify(newState.themeHistory)
+          );
           return newState;
         }
       }
       return state;
+    },
+    toolbarController: (state, action) => {
+      state.isToolbarOpen = !state.isToolbarOpen;
     },
   },
 });
@@ -180,7 +206,8 @@ export const {
   onExport,
   offExport,
   loadPreviousTheme,
-  loadNextTheme
+  loadNextTheme,
+  toolbarController
 } = themeSlice.actions;
 
 export default themeSlice.reducer;

@@ -30,6 +30,10 @@ const StyledContainer = styled.div`
   border-radius: 1rem;
   border: none;
   overflow: hidden;
+  @media only screen and (max-width: 1000px) {
+    width: 100%;
+    min-height: 6rem;
+  }
 `;
 
 export default function Primary() {

@@ -29,6 +29,10 @@ const StyledContainer = styled.div`
   width: 8%;
   border-radius: 1rem;
   overflow: hidden;
+  @media only screen and (max-width: 1000px) {
+    width: 100%;
+    min-height: 6rem;
+  }
 `;
 
 export default function Text() {
@@ -40,9 +44,7 @@ export default function Text() {
   };
   return (
     <StyledContainer>
-      <StyledLabel htmlFor="text">
-        Text
-      </StyledLabel>
+      <StyledLabel htmlFor="text">Text</StyledLabel>
       <StyledColorInput
         value={textColor}
         id="text"

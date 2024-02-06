@@ -23,7 +23,6 @@ const StyledToolBar = styled.div`
   position: fixed;
   height: 6.5rem;
   width: 85%;
-  background-color: var(--color-lightgray);
   background-color: #f0eee6;
   left: 50%;
   bottom: 2rem;
@@ -32,10 +31,24 @@ const StyledToolBar = styled.div`
   display: flex;
   align-items: center;
   z-index: 999999;
+  @media only screen and (max-width: 1000px) {
+    flex-direction: column;
+    bottom: 6.5rem;
+    transform: translateX(0);
+    left: 0;
+    padding-top: 5.5rem;
+    min-height: 70vh;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+      rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    display: ${(props) => (props.$isToolbarOpen ? "flex" : "none")};
+  }
 `;
 
 const StyledDice = styled(BsDice5Fill)`
-  font-size: 5.6rem;
+  font-size: 5.4rem;
   cursor: pointer;
   background-color: #fff;
   margin: 0.5rem;
@@ -46,6 +59,7 @@ const StyledDarkMode = styled(MdDarkMode)`
   cursor: pointer;
   background-color: #fff;
   margin: 0.5rem;
+  border-radius: 5px;
 `;
 
 const StyledLightMode = styled(GrSun)`
@@ -53,6 +67,7 @@ const StyledLightMode = styled(GrSun)`
   cursor: pointer;
   background-color: #fff;
   margin: 0.5rem;
+  border-radius: 5px;
 `;
 
 const StyledExportIcon = styled(CiExport)`
@@ -62,6 +77,7 @@ const StyledExportIcon = styled(CiExport)`
   margin: 0.5rem;
   display: inline-block;
   position: relative;
+  border-radius: 5px;
 `;
 
 const StyledUndoIcon = styled(GrUndo)`
@@ -69,12 +85,14 @@ const StyledUndoIcon = styled(GrUndo)`
   cursor: pointer;
   background-color: #fff;
   margin: 0.5rem;
+  border-radius: 5px;
 `;
 const StyledRedoIcon = styled(GrRedo)`
   font-size: 5.6rem;
   cursor: pointer;
   background-color: #fff;
-  margin: .5rem;
+  margin: 0.5rem;
+  border-radius: 5px;
 `;
 
 const StyledTooltipContainer = styled.div`
@@ -84,69 +102,105 @@ const StyledTooltipContainer = styled.div`
 
 const StyledIconContainer = styled.div`
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   &:hover {
     ${StyledTooltipContainer} {
       opacity: 1;
       visibility: visible;
     }
   }
+  @media only screen and (max-width: 1000px) {
+    flex-direction: column;
+    width: 100%;
+    background-color: #fff;
+  }
 `;
 
+const StyledColorsContainer = styled.div`
+  width: 100%;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  @media only screen and (max-width: 1000px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+`;
 
-
+const StyledContainer = styled.div`
+  display: flex;
+  @media only screen and (max-width: 1000px) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    width: 100%;
+  }
+`;
 
 export default function ToolBar() {
   const isDark = useSelector((state) => state.theme.isDark);
+  const isToolbarOpen = useSelector((state) => state.theme.isToolbarOpen);
   const dispatch = useDispatch();
   return (
-    <StyledToolBar id="toolbar">
-      <Text />
-      <Background />
-      <Primary />
-      <Secondary />
-      <Accent />
-      <StyledIconContainer>
+    <StyledToolBar id="toolbar" $isToolbarOpen={isToolbarOpen}>
+      <StyledColorsContainer>
+        <Text />
+        <Background />
+        <Primary />
+        <Secondary />
+        <Accent />
+        <StyledContainer>
+          <StyledIconContainer>
+            {isDark ? (
+              <StyledLightMode
+                id="toolbar"
+                onClick={() => dispatch(returnToLight())}
+              />
+            ) : (
+              <StyledDarkMode
+                id="toolbar"
+                onClick={() => dispatch(darkTheme())}
+              />
+            )}
+            <StyledTooltipContainer>
+              <TooltipComp title="Dark/Light" subtitle="(Alt + T)" />
+            </StyledTooltipContainer>
+          </StyledIconContainer>
 
-      <StyledDice onClick={() => dispatch(changeTheme())} />
-      <StyledTooltipContainer>
-        <TooltipComp title='Randomize Colors' subtitle="(Spacebar)" />
-      </StyledTooltipContainer>
-      </StyledIconContainer>
-      
-      <StyledIconContainer>
+          <StyledIconContainer>
+            <StyledDice onClick={() => dispatch(changeTheme())} />
+            <StyledTooltipContainer>
+              <TooltipComp title="Randomize Colors" subtitle="(Spacebar)" />
+            </StyledTooltipContainer>
+          </StyledIconContainer>
 
-      {isDark ? (
-        <StyledLightMode
-          id="toolbar"
-          onClick={() => dispatch(returnToLight())}
-        />
-      ) : (
-        <StyledDarkMode id="toolbar" onClick={() => dispatch(darkTheme())} />
-      )}
-      <StyledTooltipContainer>
-        <TooltipComp title="Dark/Light" subtitle="(Alt + T)"/>
-      </StyledTooltipContainer>
-      </StyledIconContainer>
-      <StyledIconContainer>
-        <StyledExportIcon onClick={() => dispatch(onExport())} />
-      <StyledTooltipContainer>
-      <TooltipComp title='Export' subtitle='(CTRL + E)'></TooltipComp>
-      </StyledTooltipContainer>
-      </StyledIconContainer>
+          <StyledIconContainer>
+            <StyledUndoIcon onClick={() => dispatch(loadPreviousTheme())} />
+            <StyledTooltipContainer>
+              <TooltipComp title="Undo" subtitle="(← Left arrow)" />
+            </StyledTooltipContainer>
+          </StyledIconContainer>
 
-      <StyledIconContainer>
-      <StyledUndoIcon onClick={() => dispatch(loadPreviousTheme())} />
-      <StyledTooltipContainer>
-        <TooltipComp title='Undo' subtitle="(← Left arrow)" />
-      </StyledTooltipContainer>
-      </StyledIconContainer>
+          <StyledIconContainer>
+            <StyledRedoIcon onClick={() => dispatch(loadNextTheme())} />
+            <StyledTooltipContainer>
+              <TooltipComp title="Redo" subtitle="(Right arrow →)" />
+            </StyledTooltipContainer>
+          </StyledIconContainer>
 
-      <StyledIconContainer>
-      <StyledRedoIcon onClick={() => dispatch(loadNextTheme())} />
-      <StyledTooltipContainer>
-        <TooltipComp title='Redo' subtitle="(Right arrow →)" />
-      </StyledTooltipContainer>
-      </StyledIconContainer>
+          <StyledIconContainer>
+            <StyledExportIcon onClick={() => dispatch(onExport())} />
+            <StyledTooltipContainer>
+              <TooltipComp title="Export" subtitle="(CTRL + E)"></TooltipComp>
+            </StyledTooltipContainer>
+          </StyledIconContainer>
+        </StyledContainer>
+      </StyledColorsContainer>
     </StyledToolBar>
   );
 }
