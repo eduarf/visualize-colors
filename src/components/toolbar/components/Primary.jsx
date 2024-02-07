@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { changePrimary } from "../../../features/ThemeSlice";
+import { isColorDark } from "../../utils/helpers";
 
 const StyledLabel = styled.label`
   cursor: pointer;
@@ -8,10 +9,20 @@ const StyledLabel = styled.label`
   margin: 0;
   position: absolute;
   z-index: 10;
-  color: #fff;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  color: ${(props) => {
+    if (props.$isDark && props.$isThemeDark) {
+      return "#fff";
+    } else if (props.$isDark && !props.$isThemeDark) {
+      return "#fff";
+    } else if (!props.$isDark && props.$isThemeDark) {
+      return "#000";
+    } else {
+      return "#000";
+    }
+  }};
 `;
 const StyledColorInput = styled.input.attrs({
   type: "color",
@@ -39,13 +50,21 @@ const StyledContainer = styled.div`
 export default function Primary() {
   const dispatch = useDispatch();
   const primaryColor = useSelector((state) => state.theme.primaryColor);
+  const isThemeDark = useSelector((state) => state.theme.isDark);
+  const isPrimaryColorDark = isColorDark(primaryColor);
 
   const handleSetColor = (e) => {
     dispatch(changePrimary(e.target.value));
   };
   return (
     <StyledContainer>
-      <StyledLabel htmlFor="primary">Primary</StyledLabel>
+      <StyledLabel
+        $isDark={isPrimaryColorDark}
+        $isThemeDark={isThemeDark}
+        htmlFor="primary"
+      >
+        Primary
+      </StyledLabel>
       <StyledColorInput
         value={primaryColor}
         id="primary"

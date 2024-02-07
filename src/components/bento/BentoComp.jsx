@@ -115,16 +115,16 @@ const StyledFreeCard = styled.div`
   span {
     font-size: 1.8rem;
     color: ${(props) => {
-    if (props.$isDark && props.$isThemeDark) {
-      return "#fff";
-    } else if (props.$isDark && !props.$isThemeDark) {
-      return "#fff";
-    } else if (!props.$isDark && props.$isThemeDark) {
-      return "#000";
-    } else {
-      return "#000";
-    }
-  }};
+      if (props.$isDark && props.$isThemeDark) {
+        return "#fff";
+      } else if (props.$isDark && !props.$isThemeDark) {
+        return "#fff";
+      } else if (!props.$isDark && props.$isThemeDark) {
+        return "#000";
+      } else {
+        return "#000";
+      }
+    }};
   }
 `;
 
@@ -190,10 +190,10 @@ const StyledPluginCard = styled.div`
 
 export default function BentoComp() {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
-  const primaryComp = useSelector((state) => state.theme.primaryComplement);
+  const primaryColor = useSelector((state) => state.theme.primaryColor);
   const secondaryColor = useSelector((state) => state.theme.secondaryColor);
   const isThemeDark = useSelector((state) => state.theme.isDark);
-  const isPrimaryCompDark = isColorDark(primaryComp);
+  const isPrimaryCompDark = isColorDark(primaryColor);
   const isSecondaryDark = isColorDark(secondaryColor);
 
   const checkScreenWidth = () => {
