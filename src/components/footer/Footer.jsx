@@ -105,7 +105,18 @@ const StyledFooterMenu = styled.div`
 const StyledLinkHeader = styled.div`
   font-size: 2rem;
   text-transform: uppercase;
-  color: gray;
+  text-decoration: underline;
+  color: ${(props) => {
+    if (props.$isDark && props.$isThemeDark) {
+      return "#fff";
+    } else if (props.$isDark && !props.$isThemeDark) {
+      return "#fff";
+    } else if (!props.$isDark && props.$isThemeDark) {
+      return "#000";
+    } else {
+      return "#000";
+    }
+  }};
 `;
 
 const StyledLinksContainer = styled.div`
@@ -190,7 +201,12 @@ export default function Footer() {
           {footerData.map((item) => {
             return (
               <StyledFooterMenu key={item.id}>
-                <StyledLinkHeader>{item.header}</StyledLinkHeader>
+                <StyledLinkHeader
+                  $isDark={isPrimaryCompDark}
+                  $isThemeDark={isThemeDark}
+                >
+                  {item.header}
+                </StyledLinkHeader>
                 <StyledLinksContainer>
                   {item.items.map((item) => {
                     return (
@@ -214,6 +230,7 @@ export default function Footer() {
             Made with ❤ by <a href="#">Love</a>
           </p>
           <p>No cookies 🍪 Just colors 🎨 and fonts 🔡</p>
+          <p>Coded by The Great B</p>
         </StyledBottomContent>
       </StyledFooterContainer>
     </StyledFooter>

@@ -47,6 +47,9 @@ const StyledMenuItem = styled.a`
   &:hover {
     color: #787474;
   }
+  @media only screen and (max-width: 450px) {
+    display: none;
+  }
 `;
 
 const StyledDropdown = styled.div`

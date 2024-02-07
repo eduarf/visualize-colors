@@ -14,7 +14,7 @@ const StyledHero = styled.section`
     padding: 6vh 4vw;
   }
   @media only screen and (max-width: 500px) {
-    padding: 4vh 4vw;
+    padding: 6vh 6vw;
   }
 `;
 
