@@ -7,13 +7,14 @@ const StyledHero = styled.section`
   display: grid;
   grid-template-columns: 56% 44%;
   padding: 10vh 8vw;
-  @media only screen and (max-width: 1000px){
+  @media only screen and (max-width: 1000px) {
     grid-template-columns: repeat(1, minmax(0, 1fr));
     gap: 5rem;
     margin-top: 0;
+    padding: 6vh 4vw;
   }
-  @media only screen and (max-width: 500px){
-    padding: 4vh 6vw;
+  @media only screen and (max-width: 500px) {
+    padding: 4vh 4vw;
   }
 `;
 

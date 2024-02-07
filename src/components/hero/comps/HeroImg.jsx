@@ -16,18 +16,22 @@ const StyledContainer = styled.div`
   grid-template-columns: repeat(9, minmax(0, 1fr));
   grid-template-rows: repeat(10, minmax(0, 1fr));
   gap: 0.5rem;
-  @media only screen and (max-width: 1000px){
+  @media only screen and (max-width: 1200px) {
+    height: 400px;
+    width: auto;
+  }
+  @media only screen and (max-width: 1000px) {
     height: 600px;
     width: 100%;
   }
   @media only screen and (max-width: 768px) {
-    height: 480px;
+    height: 450px;
   }
-  @media only screen and (max-width: 500px){
-    height: 400px;
+  @media only screen and (max-width: 500px) {
+    height: 350px;
   }
-  @media only screen and (max-width: 400px){
-    height: 320px;
+  @media only screen and (max-width: 400px) {
+    height: 300px;
   }
   div {
     border-radius: 1rem;
