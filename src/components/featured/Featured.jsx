@@ -1,5 +1,7 @@
 import { nanoid } from "nanoid";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { isColorDark } from "../utils/helpers";
 
 const StyledFeatured = styled.section`
   padding: 10vh 8vw;
@@ -55,8 +57,18 @@ const StyledCard = styled.div`
 
 const StyledLink = styled.a`
   font-size: 1.8rem;
-  color: var(--color-text);
   text-align: center;
+  color: ${(props) => {
+    if (props.$isDark && props.$isThemeDark) {
+      return "#fff";
+    } else if (props.$isDark && !props.$isThemeDark) {
+      return "#fff";
+    } else if (!props.$isDark && props.$isThemeDark) {
+      return "#000";
+    } else {
+      return "#000";
+    }
+  }};
 `;
 
 const StyledCardContainer = styled.div`
@@ -71,6 +83,9 @@ const StyledCardContainer = styled.div`
   }
 `;
 export default function Featured() {
+  const primaryComp = useSelector((state) => state.theme.primaryComplement);
+  const isThemeDark = useSelector((state) => state.theme.isDark);
+  const isPrimaryCompDark = isColorDark(primaryComp);
   const data = [
     {
       id: nanoid(),
@@ -93,7 +108,12 @@ export default function Featured() {
         {data.map((item) => {
           return (
             <StyledCard key={item.id}>
-              <StyledLink>{item.link}</StyledLink>
+              <StyledLink
+                $isDark={isPrimaryCompDark}
+                $isThemeDark={isThemeDark}
+              >
+                {item.link}
+              </StyledLink>
             </StyledCard>
           );
         })}

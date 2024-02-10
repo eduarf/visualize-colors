@@ -3,6 +3,8 @@ import { IoMdClock } from "react-icons/io";
 import { HiSquares2X2 } from "react-icons/hi2";
 import { FaCheckToSlot } from "react-icons/fa6";
 import { nanoid } from "nanoid";
+import { useSelector } from "react-redux";
+import { isColorDark } from "../utils/helpers";
 
 const StyledWhyColorSelector = styled.div`
   padding: 6vh 8vw;
@@ -40,6 +42,17 @@ const StyledHeader = styled.h4`
   font-size: 2.8rem;
   position: relative;
   z-index: 10;
+  color: ${(props) => {
+    if (props.$isDark && props.$isThemeDark) {
+      return "#fff";
+    } else if (props.$isDark && !props.$isThemeDark) {
+      return "#fff";
+    } else if (!props.$isDark && props.$isThemeDark) {
+      return "#000";
+    } else {
+      return "#000";
+    }
+  }};
   &::before {
     content: "";
     position: absolute;
@@ -47,7 +60,17 @@ const StyledHeader = styled.h4`
     width: 100%;
     left: 0;
     bottom: 0;
-    background-color: var(--color-primary);
+    background-color: ${(props) => {
+      if (props.$isDark && props.$isThemeDark) {
+        return "#fff";
+      } else if (props.$isDark && !props.$isThemeDark) {
+        return "#fff";
+      } else if (!props.$isDark && props.$isThemeDark) {
+        return "#000";
+      } else {
+        return "#000";
+      }
+    }};
     transition: all 0.3s ease-in-out;
     z-index: 1;
     opacity: 0.5;
@@ -84,6 +107,17 @@ const StyledPara = styled.p`
   font-size: 1.8rem;
   line-height: 1.8;
   letter-spacing: 0.9px;
+  color: ${(props) => {
+    if (props.$isDark && props.$isThemeDark) {
+      return "#fff";
+    } else if (props.$isDark && !props.$isThemeDark) {
+      return "#fff";
+    } else if (!props.$isDark && props.$isThemeDark) {
+      return "#000";
+    } else {
+      return "#000";
+    }
+  }};
   @media only screen and (max-width: 1000px) {
     text-align: center;
   }
@@ -94,6 +128,9 @@ const StyledPara = styled.p`
 `;
 
 export default function WhyColorSelector() {
+  const secondaryColor = useSelector((state) => state.theme.secondaryColor);
+  const isThemeDark = useSelector((state) => state.theme.isDark);
+  const isSecondaryColorDark = isColorDark(secondaryColor);
   const data = [
     {
       header: "Saves Time",
@@ -119,8 +156,18 @@ export default function WhyColorSelector() {
           return (
             <StyledCard key={nanoid()}>
               <StyledIcon>{item.icon}</StyledIcon>
-              <StyledHeader>{item.header}</StyledHeader>
-              <StyledPara>{item.para}</StyledPara>
+              <StyledHeader
+                $isDark={isSecondaryColorDark}
+                $isThemeDark={isThemeDark}
+              >
+                {item.header}
+              </StyledHeader>
+              <StyledPara
+                $isDark={isSecondaryColorDark}
+                $isThemeDark={isThemeDark}
+              >
+                {item.para}
+              </StyledPara>
             </StyledCard>
           );
         })}
