@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { testimonialsItems } from "../../../data";
 import { LiaStarSolid } from "react-icons/lia";
+import { useSelector } from "react-redux";
+import { isColorDark } from "../utils/helpers";
 
 const StyledTestimonials = styled.section`
   padding: 10vh 8vw;
@@ -62,6 +64,17 @@ const StyledReviewer = styled.div`
   align-items: center;
   justify-content: flex-start;
   font-size: 1.8rem;
+  color: ${(props) => {
+    if (props.$isDark && props.$isThemeDark) {
+      return "#fff";
+    } else if (props.$isDark && !props.$isThemeDark) {
+      return "#fff";
+    } else if (!props.$isDark && props.$isThemeDark) {
+      return "#000";
+    } else {
+      return "#000";
+    }
+  }};
   @media only screen and (max-width: 1200px) {
     font-size: 1.6rem;
   }
@@ -80,7 +93,17 @@ const StyledReviewerImage = styled.div`
 
 const StyledReviewerName = styled.div`
   span {
-    color: gray;
+    color: ${(props) => {
+      if (props.$isDark && props.$isThemeDark) {
+        return "#cfcfcf";
+      } else if (props.$isDark && !props.$isThemeDark) {
+        return "#cfcfcf";
+      } else if (!props.$isDark && props.$isThemeDark) {
+        return "#000";
+      } else {
+        return "#000";
+      }
+    }};
     font-size: 1.6rem;
     @media only screen and (max-width: 1200px) {
       font-size: 1.4rem;
@@ -99,6 +122,17 @@ const StyledReview = styled.p`
   font-size: 1.8rem;
   line-height: 2;
   width: 80%;
+  color: ${(props) => {
+    if (props.$isDark && props.$isThemeDark) {
+      return "#fff";
+    } else if (props.$isDark && !props.$isThemeDark) {
+      return "#fff";
+    } else if (!props.$isDark && props.$isThemeDark) {
+      return "#000";
+    } else {
+      return "#000";
+    }
+  }};
   @media only screen and (max-width: 1200px) {
     width: 100%;
     font-size: 1.6rem;
@@ -109,6 +143,9 @@ const StyledReview = styled.p`
 `;
 
 export default function Testimonials() {
+  const primaryComp = useSelector((state) => state.theme.primaryComplement);
+  const isThemeDark = useSelector((state) => state.theme.isDark);
+  const isPrimaryCompDark = isColorDark(primaryComp);
   return (
     <StyledTestimonials>
       <StyledHeader>Testimonials</StyledHeader>
@@ -119,9 +156,15 @@ export default function Testimonials() {
         {testimonialsItems.map((item, index) => {
           return (
             <StyledTestimonial key={item.id}>
-              <StyledReviewer>
+              <StyledReviewer
+                $isDark={isPrimaryCompDark}
+                $isThemeDark={isThemeDark}
+              >
                 <StyledReviewerImage $isIndexEven={(index + 1) % 2 === 0} />
-                <StyledReviewerName>
+                <StyledReviewerName
+                  $isDark={isPrimaryCompDark}
+                  $isThemeDark={isThemeDark}
+                >
                   {item.userName}
                   <br></br>
                   <span>{item.profession}</span>
@@ -134,7 +177,12 @@ export default function Testimonials() {
                 <StyledIcon />
                 <StyledIcon />
               </StyledIconContainer>
-              <StyledReview>{item.comment}</StyledReview>
+              <StyledReview
+                $isDark={isPrimaryCompDark}
+                $isThemeDark={isThemeDark}
+              >
+                {item.comment}
+              </StyledReview>
             </StyledTestimonial>
           );
         })}
