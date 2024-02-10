@@ -1,10 +1,22 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+import { isColorDark } from "../utils/helpers";
 
 const StyledSecondaryButton = styled.a`
   padding: 0.5em 2em;
   background-color: var(--color-secondary);
-  color: var(--color-text);
+  color: ${(props) => {
+    if (props.$isDark && props.$isThemeDark) {
+      return "#fff";
+    } else if (props.$isDark && !props.$isThemeDark) {
+      return "#fff";
+    } else if (!props.$isDark && props.$isThemeDark) {
+      return "#000";
+    } else {
+      return "#000";
+    }
+  }};
   border-radius: 1rem;
   display: inline-block;
   font-size: 1.8rem;
@@ -18,9 +30,19 @@ const StyledSecondaryButton = styled.a`
 `;
 
 export default function SecondaryButton({ name }) {
-  return <StyledSecondaryButton>{name}</StyledSecondaryButton>;
+  const secondaryColor = useSelector((state) => state.theme.secondaryColor);
+  const isThemeDark = useSelector((state) => state.theme.isDark);
+  const isSecondaryColorDark = isColorDark(secondaryColor);
+  return (
+    <StyledSecondaryButton
+      $isDark={isSecondaryColorDark}
+      $isThemeDark={isThemeDark}
+    >
+      {name}
+    </StyledSecondaryButton>
+  );
 }
 
 SecondaryButton.propTypes = {
-    name: PropTypes.string.isRequired,
-  };
+  name: PropTypes.string.isRequired,
+};
