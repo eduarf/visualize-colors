@@ -61,11 +61,11 @@ const AccordionHeader = styled.div`
 `;
 
 const AccordionContent = styled.div`
-  padding: ${(props) => (props.isOpen ? "10px" : "0")};
+  padding: ${(props) => (props.$isOpen ? "10px" : "0")};
   overflow: hidden;
   max-height: 0;
   transition: max-height 0.2s ease-in-out;
-  max-height: ${(props) => (props.isOpen ? "500px" : "0")};
+  max-height: ${(props) => (props.$isOpen ? "500px" : "0")};
   background-color: var(--color-primaryComp);
 `;
 const AccordionPara = styled.p`
@@ -93,7 +93,7 @@ const AccordionPara = styled.p`
 
 const StyledIcon = styled(FaPlus)`
   transition: all 0.2s ease-in-out;
-  transform: ${(props) => (props.isOpen ? "rotate(45deg)" : "rotate(0)")};
+  transform: ${(props) => (props.$isOpen ? "rotate(45deg)" : "rotate(0)")};
   color: var(--color-accent);
   font-size: 2.8rem;
   @media only screen and (max-width: 1000px) {
@@ -162,9 +162,9 @@ export default function Faq() {
               onClick={() => handleToggle(index)}
             >
               {item.title}
-              <StyledIcon isOpen={openIndex === index} />
+              <StyledIcon $isOpen={openIndex === index} />
             </AccordionHeader>
-            <AccordionContent isOpen={openIndex === index}>
+            <AccordionContent $isOpen={openIndex === index}>
               <AccordionPara
                 $isDark={isPrimaryCompDark}
                 $isThemeDark={isThemeDark}

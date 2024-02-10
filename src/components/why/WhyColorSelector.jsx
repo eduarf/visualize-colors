@@ -48,9 +48,9 @@ const StyledHeader = styled.h4`
     } else if (props.$isDark && !props.$isThemeDark) {
       return "#fff";
     } else if (!props.$isDark && props.$isThemeDark) {
-      return "#000";
+      return "#201c1c";
     } else {
-      return "#000";
+      return "#201c1c";
     }
   }};
   &::before {
@@ -66,9 +66,9 @@ const StyledHeader = styled.h4`
       } else if (props.$isDark && !props.$isThemeDark) {
         return "#fff";
       } else if (!props.$isDark && props.$isThemeDark) {
-        return "#000";
+        return "#201c1c";
       } else {
-        return "#000";
+        return "#201c1c";
       }
     }};
     transition: all 0.3s ease-in-out;
@@ -113,9 +113,9 @@ const StyledPara = styled.p`
     } else if (props.$isDark && !props.$isThemeDark) {
       return "#fff";
     } else if (!props.$isDark && props.$isThemeDark) {
-      return "#000";
+      return "#201c1c";
     } else {
-      return "#000";
+      return "#201c1c";
     }
   }};
   @media only screen and (max-width: 1000px) {
