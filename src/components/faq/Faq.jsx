@@ -37,8 +37,17 @@ const AccordionHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: ${(props) =>
-    props.$isDark ? "var(--color-background)" : "var(--color-text)"};
+  color: ${(props) => {
+    if (props.$isDark && props.$isThemeDark) {
+      return "#fff";
+    } else if (props.$isDark && !props.$isThemeDark) {
+      return "#fff";
+    } else if (!props.$isDark && props.$isThemeDark) {
+      return "#000";
+    } else {
+      return "#000";
+    }
+  }};
   @media only screen and (max-width: 1200px) {
     font-size: 2.2rem;
   }
@@ -118,10 +127,9 @@ const StyledSubtitle = styled.h5`
 
 export default function Faq() {
   const [openIndex, setOpenIndex] = useState(null);
-  const primaryComplement = useSelector(
-    (state) => state.theme.primaryComplement
-  );
-  const isPrimaryComplementDark = isColorDark(primaryComplement);
+  const primaryComp = useSelector((state) => state.theme.primaryComplement);
+  const isThemeDark = useSelector((state) => state.theme.isDark);
+  const isPrimaryCompDark = isColorDark(primaryComp);
 
   const handleToggle = (index) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -138,7 +146,8 @@ export default function Faq() {
         {accordionItems.map((item, index) => (
           <AccordionItem key={index}>
             <AccordionHeader
-              $isDark={isPrimaryComplementDark}
+              $isDark={isPrimaryCompDark}
+              $isThemeDark={isThemeDark}
               onClick={() => handleToggle(index)}
             >
               {item.title}

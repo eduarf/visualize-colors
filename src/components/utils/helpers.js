@@ -158,15 +158,14 @@ export function createColorPalette(rgb) {
 }
 
 export function isColorDark(color) {
-  // Renk değerlerini elde et
   let r, g, b;
   if (color.startsWith("#")) {
-    // Hex renk kodunu ayrıştır
+    // Hex ayrıştır
     r = parseInt(color.slice(1, 3), 16);
     g = parseInt(color.slice(3, 5), 16);
     b = parseInt(color.slice(5, 7), 16);
   } else if (color.startsWith("rgb")) {
-    // rgb veya rgba renk değerini ayrıştır
+    // Rgb ayrıştır
     const match = color.match(/(\d+),\s*(\d+),\s*(\d+)/);
     if (match) {
       r = parseInt(match[1], 10);
@@ -175,9 +174,8 @@ export function isColorDark(color) {
     }
   }
 
-  // Renk koyuluğunu değerlendir (örneğin, RGB ortalama değeri)
+  // Rgb ortalaması
   const brightness = (r + g + b) / 3;
 
-  // Eğer ortalama değer 128'den küçükse renk koyu kabul edilir
-  return brightness < 128;
+  return brightness < 150;
 }

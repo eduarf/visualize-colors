@@ -157,7 +157,6 @@ export default function Footer() {
   const primaryComp = useSelector((state) => state.theme.primaryComplement);
   const isThemeDark = useSelector((state) => state.theme.isDark);
   const isPrimaryCompDark = isColorDark(primaryComp);
-  console.log(isPrimaryCompDark);
 
   const footerData = [
     {
