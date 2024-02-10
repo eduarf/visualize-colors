@@ -1,6 +1,3 @@
-
-
-
 // RGB renklerini HSL renk modeline dönüştürme
 export function rgbToHsl(rgb) {
   let r = rgb[0] / 255;
@@ -118,11 +115,11 @@ export function hexToRgb(hex) {
 }
 
 export function lightenColor(rgb, factor = 1.3) {
-  return rgb.map(component => Math.round(Math.min(component * factor, 255)));
+  return rgb.map((component) => Math.round(Math.min(component * factor, 255)));
 }
 
-export function darkenColor(rgb, factor = .8) {
-  return rgb.map(component => Math.round(component * factor));
+export function darkenColor(rgb, factor = 0.8) {
+  return rgb.map((component) => Math.round(component * factor));
 }
 
 function complementerColor(rgb) {
@@ -140,7 +137,7 @@ function complementerColor(rgb) {
 
 export function createColorPalette(rgb) {
   let primaryColor = rgb;
-  let primaryComplementColor = complementerColor(primaryColor)[1]; 
+  let primaryComplementColor = complementerColor(primaryColor)[1];
 
   // Secondary
   let secondaryColor = hslToRgb([
@@ -150,11 +147,7 @@ export function createColorPalette(rgb) {
   ]);
 
   // accent
-  let accentColor = hslToRgb([
-    (rgbToHsl(primaryColor)[0] + 60) % 360,
-    80,
-    60,
-  ]);
+  let accentColor = hslToRgb([(rgbToHsl(primaryColor)[0] + 60) % 360, 80, 60]);
 
   return {
     primary: primaryColor,
@@ -188,8 +181,3 @@ export function isColorDark(color) {
   // Eğer ortalama değer 128'den küçükse renk koyu kabul edilir
   return brightness < 128;
 }
-
-
-
-
-

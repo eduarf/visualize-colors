@@ -36,6 +36,7 @@ const themeSlice = createSlice({
       const currentTheme = { ...rest }; // themeHistory olmadan temayı al
       state.themeHistory.push(currentTheme);
       localStorage.setItem("themeHistory", JSON.stringify(state.themeHistory));
+      localStorage.setItem("lightPalette", JSON.stringify(state));
     },
     changeTheme: (state, action) => {
       const red = Math.floor(Math.random() * 256);
@@ -108,9 +109,8 @@ const themeSlice = createSlice({
     returnToLight: (state, action) => {
       state.isDark = false;
       const storedPalette = localStorage.getItem("lightPalette");
-
+      const previousPalette = JSON.parse(storedPalette);
       if (storedPalette) {
-        const previousPalette = JSON.parse(storedPalette);
         state.primaryColor = previousPalette.primaryColor;
         state.secondaryColor = previousPalette.secondaryColor;
         state.accentColor = previousPalette.accentColor;
@@ -207,7 +207,7 @@ export const {
   offExport,
   loadPreviousTheme,
   loadNextTheme,
-  toolbarController
+  toolbarController,
 } = themeSlice.actions;
 
 export default themeSlice.reducer;
