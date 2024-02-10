@@ -67,16 +67,27 @@ const AccordionContent = styled.div`
   transition: max-height 0.2s ease-in-out;
   max-height: ${(props) => (props.isOpen ? "500px" : "0")};
   background-color: var(--color-primaryComp);
-  p {
-    width: 90%;
-    font-size: 1.8rem;
-    line-height: 2;
-    font-weight: 400;
-    white-space: pre-wrap;
-    @media only screen and (max-width: 768px) {
-      font-size: 1.6rem;
-      width: 100%;
+`;
+const AccordionPara = styled.p`
+  width: 90%;
+  font-size: 1.8rem;
+  line-height: 2;
+  font-weight: 400;
+  white-space: pre-wrap;
+  color: ${(props) => {
+    if (props.$isDark && props.$isThemeDark) {
+      return "#fff";
+    } else if (props.$isDark && !props.$isThemeDark) {
+      return "#fff";
+    } else if (!props.$isDark && props.$isThemeDark) {
+      return "#000";
+    } else {
+      return "#000";
     }
+  }};
+  @media only screen and (max-width: 768px) {
+    font-size: 1.6rem;
+    width: 100%;
   }
 `;
 
@@ -154,7 +165,12 @@ export default function Faq() {
               <StyledIcon isOpen={openIndex === index} />
             </AccordionHeader>
             <AccordionContent isOpen={openIndex === index}>
-              <p>{openIndex === index ? item.content : null}</p>
+              <AccordionPara
+                $isDark={isPrimaryCompDark}
+                $isThemeDark={isThemeDark}
+              >
+                {openIndex === index ? item.content : null}
+              </AccordionPara>
             </AccordionContent>
           </AccordionItem>
         ))}
