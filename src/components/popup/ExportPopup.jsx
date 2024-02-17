@@ -30,13 +30,33 @@ const StyledExportCard = styled.div`
 const StyledTabList = styled.ul`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-bottom: 1rem;
   border-bottom: 1px solid black;
+  gap: 1rem;
+  &::-webkit-scrollbar {
+    height: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(129, 129, 129, 0.5); /* Kaydırma çubuğu rengi */
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(132, 132, 132);
+  }
+  &::-webkit-scrollbar-track {
+    background-color: #e3e3e3; /* Kaydırma çubuğu yolu rengi */
+  }
+  @media only screen and (max-width: 1000px) {
+    overflow-x: scroll;
+    gap: 2rem;
+    scroll-behavior: smooth;
+  }
 `;
 
 const StyledTabItem = styled.li`
   cursor: pointer;
   position: relative;
+  white-space: nowrap;
 `;
 
 const StyledTabHeader = styled.div`
@@ -58,26 +78,26 @@ const StyledTabHeader = styled.div`
   }
 `;
 const StyledExportInformation = styled.small`
-display: flex;
-gap: .5rem;
-margin-left: 2rem;
-a {
-  color: gray;
-  position: relative;
-  &::before {
-    content: '';
-    position: absolute;
-    height: .5px;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-    background-color: #acacac;
-    transition: all .2s ease-in-out;
+  display: flex;
+  gap: 0.5rem;
+  margin-left: 2rem;
+  a {
+    color: gray;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      height: 0.5px;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      background-color: #acacac;
+      transition: all 0.2s ease-in-out;
+    }
+    &:hover::before {
+      height: 2px;
+    }
   }
-  &:hover::before {
-    height: 2px;
-  }
-}
 `;
 
 export default function ExportPopup() {
@@ -90,7 +110,12 @@ export default function ExportPopup() {
       const isToolBarClick = e.target.closest("#toolbar");
       const isPopupContentClick = e.target.closest("#popupContent");
 
-      if (!isToolBarClick && !isPopupContentClick && ref.current && !ref.current.contains(e.target)) {
+      if (
+        !isToolBarClick &&
+        !isPopupContentClick &&
+        ref.current &&
+        !ref.current.contains(e.target)
+      ) {
         dispatch(offExport());
       }
     };
@@ -131,8 +156,7 @@ export default function ExportPopup() {
       {popupContent === "ScssContent" ? <ScssContent /> : null}
       {popupContent === "ShadesContent" ? <ShadesContent /> : null}
       <StyledExportInformation>
-        <a href="#">Learn about exporting</a>
-        -
+        <a href="#">Learn about exporting</a>-
         <a href="#"> Request an export option</a>
       </StyledExportInformation>
     </StyledExportCard>
