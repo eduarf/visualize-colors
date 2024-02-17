@@ -25,6 +25,7 @@ const StyledExportCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between !important;
+  z-index: 9999999;
 `;
 
 const StyledTabList = styled.ul`

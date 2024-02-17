@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { RxDoubleArrowUp, RxDoubleArrowDown } from "react-icons/rx";
 import { toolbarController } from "../../features/ThemeSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const StyledToolbarRespons = styled.div`
   position: fixed;
@@ -12,7 +13,7 @@ const StyledToolbarRespons = styled.div`
   bottom: 0.0001rem;
   transform: translateX(-50%);
   border-radius: 0.5rem;
-  z-index: 999999;
+  z-index: 99999;
   padding: 0.75rem;
   display: none;
   span {
@@ -45,6 +46,14 @@ const StyledContainer = styled.div`
 export default function ToolbarRespons() {
   const dispatch = useDispatch();
   const isToolbarOpen = useSelector((state) => state.theme.isToolbarOpen);
+  const isExportOpen = useSelector((state) => state.theme.isExportOpen);
+
+  useEffect(() => {
+    if(isExportOpen) {
+      dispatch(toolbarController());
+    }
+  },[dispatch, isExportOpen]);
+
   return (
     <StyledToolbarRespons>
       <StyledContainer onClick={() => dispatch(toolbarController())}>

@@ -30,7 +30,7 @@ const StyledToolBar = styled.div`
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
-  z-index: 999999;
+  z-index: 999998;
   @media only screen and (max-width: 1000px) {
     flex-direction: column;
     bottom: 6.5rem;
