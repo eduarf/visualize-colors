@@ -37,7 +37,7 @@ const StyledToolBar = styled.div`
     transform: translateX(0);
     left: 0;
     padding-top: 5.5rem;
-    min-height: 70vh;
+    min-height: 80vh;
     max-height: 80vh;
     width: 100%;
     overflow-y: auto;
