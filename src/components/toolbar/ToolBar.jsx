@@ -18,6 +18,7 @@ import { CiExport } from "react-icons/ci";
 import { GrUndo, GrRedo } from "react-icons/gr";
 import { loadPreviousTheme, loadNextTheme } from "../../features/themeSlice";
 import TooltipComp from "../tooltip/TooltipComp";
+import { useEffect, useState } from "react";
 
 const StyledToolBar = styled.div`
   position: fixed;
@@ -146,7 +147,19 @@ const StyledContainer = styled.div`
 export default function ToolBar() {
   const isDark = useSelector((state) => state.theme.isDark);
   const isToolbarOpen = useSelector((state) => state.theme.isToolbarOpen);
+  const [isMobile, setIsMobile] = useState(false);
+  const screen = window.matchMedia(
+    "only screen and (max-width: 760px)"
+  ).matches;
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (screen) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  }, [screen]);
   return (
     <StyledToolBar id="toolbar" $isToolbarOpen={isToolbarOpen}>
       <StyledColorsContainer>
@@ -169,35 +182,45 @@ export default function ToolBar() {
               />
             )}
             <StyledTooltipContainer>
-              <TooltipComp title="Dark/Light" subtitle="(Alt + T)" />
+              {isMobile ? null : (
+                <TooltipComp title="Dark/Light" subtitle="(Alt + T)" />
+              )}
             </StyledTooltipContainer>
           </StyledIconContainer>
 
           <StyledIconContainer>
             <StyledDice onClick={() => dispatch(changeTheme())} />
             <StyledTooltipContainer>
-              <TooltipComp title="Randomize Colors" subtitle="(Spacebar)" />
+              {isMobile ? null : (
+                <TooltipComp title="Randomize Colors" subtitle="(Spacebar)" />
+              )}
             </StyledTooltipContainer>
           </StyledIconContainer>
 
           <StyledIconContainer>
             <StyledUndoIcon onClick={() => dispatch(loadPreviousTheme())} />
             <StyledTooltipContainer>
-              <TooltipComp title="Undo" subtitle="(← Left arrow)" />
+              {isMobile ? null : (
+                <TooltipComp title="Undo" subtitle="(← Left arrow)" />
+              )}
             </StyledTooltipContainer>
           </StyledIconContainer>
 
           <StyledIconContainer>
             <StyledRedoIcon onClick={() => dispatch(loadNextTheme())} />
             <StyledTooltipContainer>
-              <TooltipComp title="Redo" subtitle="(Right arrow →)" />
+              {isMobile ? null : (
+                <TooltipComp title="Redo" subtitle="(Right arrow →)" />
+              )}
             </StyledTooltipContainer>
           </StyledIconContainer>
 
           <StyledIconContainer>
             <StyledExportIcon onClick={() => dispatch(onExport())} />
             <StyledTooltipContainer>
-              <TooltipComp title="Export" subtitle="(CTRL + E)"></TooltipComp>
+              {isMobile ? null : (
+                <TooltipComp title="Export" subtitle="(CTRL + E)"></TooltipComp>
+              )}
             </StyledTooltipContainer>
           </StyledIconContainer>
         </StyledContainer>
